@@ -1,0 +1,25 @@
+get:
+  operationId: TaskIdGet
+  parameters:
+    - description: Id of the task
+      in: path
+      name: taskId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/task.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: Only task instance which you have permission to see will be returned
+  summary: Get a task by its id
+  tags:
+    - Workflow
+    - Task

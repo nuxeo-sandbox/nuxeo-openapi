@@ -1,0 +1,11 @@
+properties:
+  '@prefix':
+    type: string
+  fields:
+    type: object
+  name:
+    type: string
+required:
+  - '@prefix'
+  - fields
+  - name

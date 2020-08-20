@@ -1,0 +1,36 @@
+post:
+  deprecated: true
+  operationId: DocumentIdBusinessObjectAdapterPost
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+    - description: Name of the adapter
+      in: path
+      name: adapterName
+      required: true
+      schema:
+        type: string
+    - description: Name of the document
+      in: path
+      name: docName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/BusinessObject.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Creates a document based on its business object
+  tags:
+    - Business Object

@@ -1,0 +1,84 @@
+delete:
+  operationId: DirectoryEntryDelete
+  parameters:
+    - description: 'Directory name. Ex: ''subject'''
+      in: path
+      name: directoryName
+      required: true
+    - description: Directory entry id
+      in: path
+      name: entryId
+      required: true
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Delete a directory entry
+  tags:
+    - Directory
+get:
+  operationId: DirectoryEntryGet
+  parameters:
+    - description: 'Directory name. Ex: ''subject'''
+      in: path
+      name: directoryName
+      required: true
+    - description: Directory entry id
+      in: path
+      name: entryId
+      required: true
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/directoryEntry.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Get a directory entry
+  tags:
+    - Directory
+put:
+  operationId: DirectoryEntryPut
+  parameters:
+    - description: 'Directory name. Ex: ''subject'''
+      in: path
+      name: directoryName
+      required: true
+      schema:
+        type: string
+    - description: Directory entry id
+      in: path
+      name: entryId
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/directoryEntry.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/directoryEntry.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Update a directory entry
+  tags:
+    - Directory

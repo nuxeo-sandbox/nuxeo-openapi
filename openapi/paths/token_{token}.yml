@@ -1,0 +1,23 @@
+delete:
+  operationId: TokenDelete
+  parameters:
+    - description: Authentication Token
+      in: path
+      name: token
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Delete an existing authentication token
+  tags:
+    - Token

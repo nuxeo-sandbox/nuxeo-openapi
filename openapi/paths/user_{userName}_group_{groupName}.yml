@@ -1,0 +1,29 @@
+post:
+  operationId: UserAddGroupPost
+  parameters:
+    - description: 'Username of the user, ex: ''Administrator'''
+      in: path
+      name: userName
+      required: true
+      schema:
+        type: string
+    - description: 'Name of the group, ex: ''members'''
+      in: path
+      name: groupName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/user.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Add a group to a user
+  tags:
+    - User

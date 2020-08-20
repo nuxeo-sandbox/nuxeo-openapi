@@ -1,0 +1,37 @@
+get:
+  operationId: OAuth2ClientGet
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2ClientDataList.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Retrieves a OAuth2 client.
+  tags:
+    - OAuth2
+post:
+  operationId: OAuth2ClientPost
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/oauth2ClientData.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2ClientData.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Adds an OAuth2 client.
+  tags:
+    - OAuth2

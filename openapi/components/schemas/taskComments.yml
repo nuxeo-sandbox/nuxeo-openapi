@@ -1,0 +1,12 @@
+properties:
+  author:
+    type: string
+    uniqueItems: false
+  date:
+    format: date
+    type: string
+    uniqueItems: false
+required:
+  - author
+  - date
+uniqueItems: false

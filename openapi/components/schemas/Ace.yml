@@ -1,0 +1,15 @@
+properties:
+  granted:
+    type: boolean
+    uniqueItems: false
+  permission:
+    type: string
+    uniqueItems: false
+  username:
+    type: string
+    uniqueItems: false
+required:
+  - granted
+  - permission
+  - username
+uniqueItems: false

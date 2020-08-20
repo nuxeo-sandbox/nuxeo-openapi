@@ -1,0 +1,29 @@
+properties:
+  entity-type:
+    type: string
+    uniqueItems: false
+  extendedGroups:
+    items:
+      $ref: ./GroupRef.yml
+    type: object
+    uniqueItems: false
+  id:
+    type: string
+    uniqueItems: false
+  isAdministrator:
+    type: boolean
+    uniqueItems: false
+  isAnonymous:
+    type: boolean
+    uniqueItems: false
+  properties:
+    items:
+      $ref: ./Property.yml
+    type: object
+    uniqueItems: false
+required:
+  - entity-type
+  - id
+  - isAdministrator
+  - isAnonymous
+uniqueItems: false

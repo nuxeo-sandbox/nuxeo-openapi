@@ -1,0 +1,23 @@
+get:
+  operationId: ConfigurationSchemaGet
+  parameters:
+    - description: The name of the schema
+      in: path
+      name: schema
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/schema.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Schema description
+  tags:
+    - Configuration

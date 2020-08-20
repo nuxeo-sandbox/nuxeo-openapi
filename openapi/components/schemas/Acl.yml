@@ -1,0 +1,13 @@
+properties:
+  ace:
+    items:
+      $ref: ./Ace.yml
+    type: array
+    uniqueItems: false
+  name:
+    type: string
+    uniqueItems: false
+required:
+  - ace
+  - name
+uniqueItems: false

@@ -1,0 +1,16 @@
+properties:
+  directoryName:
+    type: string
+    uniqueItems: false
+  entity-type:
+    type: string
+    uniqueItems: false
+  properties:
+    items:
+      $ref: ./Property.yml
+    type: object
+    uniqueItems: false
+required:
+  - directoryName
+  - entity-type
+uniqueItems: false

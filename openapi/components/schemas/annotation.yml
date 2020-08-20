@@ -1,0 +1,65 @@
+properties:
+  security:
+    type: string
+    uniqueItems: false
+  color:
+    type: string
+    uniqueItems: false
+  creationDate:
+    format: date-time
+    type: string
+    uniqueItems: false
+  date:
+    format: date-time
+    type: string
+    uniqueItems: false
+  documentId:
+    type: string
+    uniqueItems: false
+  entity-type:
+    type: string
+    uniqueItems: false
+  flags:
+    type: string
+    uniqueItems: false
+  id:
+    type: string
+    uniqueItems: false
+  lastModifier:
+    type: string
+    uniqueItems: false
+  name:
+    type: string
+    uniqueItems: false
+  opacity:
+    format: double
+    type: number
+    uniqueItems: false
+  page:
+    type: integer
+    uniqueItems: false
+  position:
+    type: string
+    uniqueItems: false
+  subject:
+    type: string
+    uniqueItems: false
+  xpath:
+    type: string
+    uniqueItems: false
+required:
+  - creationDate
+  - date
+  - documentId
+  - entity-type
+  - flags
+  - id
+  - lastModifier
+  - name
+  - opacity
+  - page
+  - position
+  - security
+  - subject
+  - xpath
+uniqueItems: false

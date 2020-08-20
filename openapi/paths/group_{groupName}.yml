@@ -1,0 +1,70 @@
+delete:
+  operationId: GroupNameDelete
+  parameters:
+    - description: 'Name of the group, ex: ''members'''
+      in: path
+      name: groupName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Delete a group by its name
+  tags:
+    - Group
+get:
+  operationId: GroupNameGet
+  parameters:
+    - description: 'Name of the group, ex: ''members'''
+      in: path
+      name: groupName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/group.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Get a group by its name
+  tags:
+    - Group
+put:
+  operationId: GroupNamePut
+  parameters:
+    - description: 'Name of the group, ex: ''members'''
+      in: path
+      name: groupName
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref:  ../components/schemas/group.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/group.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Update a group by its name
+  tags:
+    - Group

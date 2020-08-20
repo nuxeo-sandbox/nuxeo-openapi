@@ -1,0 +1,11 @@
+properties:
+  name:
+    type: string
+    uniqueItems: false
+  url:
+    $ref: ./layoutResource.yml
+    uniqueItems: false
+required:
+  - name
+  - url
+uniqueItems: false

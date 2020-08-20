@@ -1,0 +1,23 @@
+get:
+  operationId: WorkflowModelByNameGet
+  parameters:
+    - description: Name of the workflow model
+      in: path
+      name: modelName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/workflow.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Find a workflow model by its name
+  tags:
+    - Workflow Model

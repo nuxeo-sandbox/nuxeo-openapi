@@ -1,0 +1,44 @@
+delete:
+  operationId: WorkflowInstanceDelete
+  parameters:
+    - description: Id of the workflow instance
+      in: path
+      name: workflowInstanceId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: Only workflow instance which you have permission to see will be returned
+  summary: Delete a workflow instance by its id
+  tags:
+    - Workflow
+get:
+  operationId: WorkflowInstanceGet
+  parameters:
+    - description: Id of the workflow instance
+      in: path
+      name: workflowInstanceId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/workflow.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: Only workflow instance which you have permission to see will be returned
+  summary: Find a workflow instance by its id
+  tags:
+    - Workflow

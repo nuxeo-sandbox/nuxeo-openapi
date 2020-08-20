@@ -1,0 +1,21 @@
+post:
+  operationId: GroupPost
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/group.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/group.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Create a group
+  tags:
+    - Group

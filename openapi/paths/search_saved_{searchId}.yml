@@ -1,0 +1,70 @@
+delete:
+  operationId: SearchSavedIdDelete
+  parameters:
+    - description: The search id.
+      in: path
+      name: searchId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Deletes the saved search with the supplied id.
+  tags:
+    - Search
+get:
+  operationId: SearchSavedIdGet
+  parameters:
+    - description: The search id.
+      in: path
+      name: searchId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/savedsearch.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Return the saved search with the supplied id.
+  tags:
+    - Search
+put:
+  operationId: SearchSavedIdPut
+  parameters:
+    - description: The search id.
+      in: path
+      name: searchId
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/savedsearch.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/savedsearch.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Updates the saved search with the supplied id.
+  tags:
+    - Search

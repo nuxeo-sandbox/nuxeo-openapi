@@ -1,0 +1,83 @@
+get:
+  operationId: DocumentIdChildrenAdapterGet
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+    - description: Index of the current page
+      in: query
+      name: currentPageIndex
+      required: false
+      schema:
+        type: integer
+    - description: >-
+        Offset of the page to retrieve. If set, the 'currentPageIndex' parameter
+        is ignored.
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+    - description: Size of the page to retrieve. Ignored if offset set
+      in: query
+      name: pageSize
+      required: false
+      schema:
+        type: integer
+    - description: Maximum results to retrieve
+      in: query
+      name: maxResults
+      required: false
+      schema:
+        type: integer
+    - description: 'Property to sort by, for example ''dc:title'''
+      in: query
+      name: sortBy
+      required: false
+      schema:
+        type: string
+    - description: 'Sort order, accepts ''asc'' or ''desc'', default is ''desc'''
+      in: query
+      name: sortOrder
+      required: false
+      schema:
+        type: string
+    - description: Schemas to be included in response
+      in: header
+      name: X-NXDocumentProperties
+      required: false
+      schema:
+        type: string
+    - description: Categories to be included in context parameters map
+      in: header
+      name: X-NXContext-Category
+      required: false
+      schema:
+        type: string
+    - description: >-
+        Checkin Document Version. Return the last document version. (not live
+        document) | Values: major or minor or none
+      in: header
+      name: X-Versioning-Option
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/documents.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: Only documents which you have permission to see will be returned
+  summary: Get the children of a document by its id
+  tags:
+    - Children 
+    - Adapter

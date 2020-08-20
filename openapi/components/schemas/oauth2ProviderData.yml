@@ -1,0 +1,49 @@
+properties:
+  authorizationServerURL:
+    type: string
+    uniqueItems: false
+  authorizationURL:
+    type: string
+    uniqueItems: false
+  clientId:
+    type: string
+    uniqueItems: false
+  clientSecret:
+    type: string
+    uniqueItems: false
+  description:
+    type: string
+    uniqueItems: false
+  entity-type:
+    type: string
+    uniqueItems: false
+  isAuthorized:
+    type: boolean
+    uniqueItems: false
+  isAvailable:
+    type: boolean
+    uniqueItems: false
+  isEnabled:
+    type: boolean
+    uniqueItems: false
+  scopes:
+    items:
+      type: string
+    type: array
+    uniqueItems: false
+  serviceName:
+    type: string
+    uniqueItems: false
+  tokenServerURL:
+    type: string
+    uniqueItems: false
+  userAuthorizationURL:
+    type: string
+    uniqueItems: false
+  userId:
+    type: string
+    uniqueItems: false
+required:
+  - entity-type
+  - serviceName
+uniqueItems: false

@@ -1,0 +1,60 @@
+get:
+  operationId: TokenGet
+  parameters:
+    - description: Application symbolic name
+      in: query
+      name: application
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationTokenList.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Gets all readable authentication tokens
+  tags:
+    - Token
+post:
+  operationId: TokenPost
+  parameters:
+    - description: Application symbolic name
+      in: query
+      name: application
+      required: false
+      schema:
+        type: string
+    - description: Device identifier
+      in: query
+      name: deviceId
+      required: true
+      schema:
+        type: string
+    - description: Device description
+      in: query
+      name: deviceDescription
+      required: true
+      schema:
+        type: string
+    - description: Permission granted with the authentication token
+      in: query
+      name: permission
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Acquire new authentication token
+  tags:
+    - Token

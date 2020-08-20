@@ -1,0 +1,21 @@
+post:
+  operationId: UserPost
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/user.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/user.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Create a user
+  tags:
+    - User

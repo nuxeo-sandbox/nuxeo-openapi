@@ -1,0 +1,15 @@
+properties:
+  token:
+    type: string
+    uniqueItems: true
+  url:
+    type: string
+    uniqueItems: false
+  userName:
+    type: string
+    uniqueItems: false
+required:
+  - token
+  - url
+  - userName
+uniqueItems: false

@@ -1,0 +1,19 @@
+properties:
+  codec:
+    items:
+      type: string
+    type: array
+    uniqueItems: false
+  operations:
+    items:
+      $ref: ./OperationDescription.yml
+    type: array
+    uniqueItems: false
+  path:
+    type: object
+    uniqueItems: false
+required:
+  - codec
+  - operations
+  - path
+uniqueItems: false

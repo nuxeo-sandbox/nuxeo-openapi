@@ -1,0 +1,31 @@
+post:
+  operationId: DocumentPathChildrenOperationAdapterPost
+  parameters:
+    - description: 'Path of the document, ex: ''default-domain'''
+      in: path
+      name: docPath
+      required: true
+      schema:
+        type: string
+    - description: Name of the operation
+      in: path
+      name: operationName
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/OperationParams.yml
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: This works on every API endpoint that return DocumentList
+  summary: Execute an operation or a chain on the children of a document
+  tags:
+    - Automation

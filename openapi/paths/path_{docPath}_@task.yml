@@ -1,0 +1,45 @@
+get:
+  operationId: DocumentPathTaskAdapterGet
+  parameters:
+    - description: 'Path of the document, ex: ''default-domain'''
+      in: path
+      name: docPath
+      required: true
+      schema:
+        type: string
+    - description: id of the user who is actor of the task
+      in: query
+      name: userId
+      required: true
+      schema:
+        type: string
+    - description: id of the workflow instance the task belongs to
+      in: query
+      name: workflowInstanceId
+      required: false
+      schema:
+        type: string
+    - description: >-
+        name of the workflow model of the task (i.e. 'SerialDocumentReview',
+        'ParallelDocumentReview'). Deprecated since 11.1 as this parameter
+        forces post-filtering and prevents paginated results.
+      in: query
+      name: workflowModelName
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/tasks.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: Only task instance which you have permission to see will be returned
+  summary: List tasks of the given document
+  tags:
+    - Workflow

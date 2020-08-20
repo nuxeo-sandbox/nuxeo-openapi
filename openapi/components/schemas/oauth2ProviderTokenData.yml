@@ -1,0 +1,7 @@
+properties:
+  token:
+    type: string
+    uniqueItems: false
+required:
+  - token
+uniqueItems: false

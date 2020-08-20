@@ -1,0 +1,81 @@
+get:
+  operationId: DocumentIdAnnotationAdapterGet
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/annotationList.yml
+    "401":
+      description: Not Authorized to get document
+    "404":
+      description: Document not found
+  summary: Get all annotations on a given document blob
+  tags:
+    - Annotation
+    - Adapter
+post:
+  operationId: DocumentIdAnnotationAdapterPost
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/annotation.yml
+  responses:
+    "200":
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/annotation.yml
+    "401":
+      description: Not Authorized to get document
+    "404":
+      description: Document not found
+  summary: Create an annotation on a given document
+  tags:
+    - Annotation
+put:
+  operationId: DocumentIdAnnotationAdapterPut
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/annotation.yml
+  responses:
+    "200":
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/annotation.yml
+    "401":
+      description: Not Authorized to get document
+    "404":
+      description: Document not found
+  summary: Update an annotation on a given document
+  tags:
+    - Annotation
+    - Adapter

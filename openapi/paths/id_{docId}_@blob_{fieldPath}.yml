@@ -1,0 +1,26 @@
+get:
+  operationId: DocumentIdBlobAdapterGet
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+    - description: 'The field path you want do download (ex: file:content)'
+      in: path
+      name: fieldPath
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Get the main blob of a document by its id
+  tags:
+    - Blob 
+    - Adapter

@@ -1,0 +1,72 @@
+get:
+  operationId: SearchPageProviderExecuteGet
+  parameters:
+    - description: The page provider name.
+      in: path
+      name: providerName
+      required: true
+      schema:
+        type: string
+    - description: 'The number of entries per page. (By default: 0)'
+      in: query
+      name: pageSize
+      required: false
+      schema:
+        type: integer
+    - description: 'The selected page index. (By default: 0)'
+      in: query
+      name: currentPageIndex
+      required: false
+      schema:
+        type: integer
+    - description: >-
+        The offset of the returned result set. If set, the 'currentPageIndex'
+        parameter is ignored.
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+    - description: 'The maximum entries. (By default: 200)'
+      in: query
+      name: maxResults
+      required: false
+      schema:
+        type: integer
+    - description: 'Property(ies) sorting. (Example: sortBy=''dc:title,dc:description'')'
+      in: query
+      name: sortBy
+      required: false
+      schema:
+        type: string
+    - description: 'Sort order. (Example: sortOrder=''DESC,ASC'')'
+      in: query
+      name: sortOrder
+      required: false
+      schema:
+        type: string
+    - description: >-
+        Ordered parameters. (Example: for 'Select * From Document where dc:title
+        = ?' -> queryParams='titleA')
+      in: query
+      name: queryParams
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/documents.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: >-
+    You can have also named parameters in the query. See
+    http://doc.nuxeo.com/x/qAc5AQ
+  summary: Perform Named Page Provider on the repository
+  tags:
+    - Search

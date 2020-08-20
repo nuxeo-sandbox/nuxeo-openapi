@@ -1,0 +1,12 @@
+properties:
+  acls:
+    items:
+      $ref: ./Acl.yml
+    type: array
+    uniqueItems: false
+  entity-type:
+    type: string
+    uniqueItems: false
+required:
+  - entity-type
+uniqueItems: false

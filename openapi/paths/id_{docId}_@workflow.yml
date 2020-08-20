@@ -1,0 +1,52 @@
+get:
+  operationId: DocumentIdWorkflowAdapterGet
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/workflows.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: Only workflow instances launched by current user will be returned
+  summary: Get the workflow instances launched on the given document
+  tags:
+    - Workflow
+post:
+  operationId: DocumentIdWorkflowAdapterPost
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/workflowRequest.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/workflowRequest.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Start a workflow instance on the given document
+  tags:
+    - Workflow

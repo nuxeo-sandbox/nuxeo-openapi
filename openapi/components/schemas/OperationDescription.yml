@@ -1,0 +1,36 @@
+properties:
+  category:
+    type: string
+    uniqueItems: false
+  description:
+    type: string
+    uniqueItems: false
+  id:
+    type: string
+    uniqueItems: false
+  label:
+    type: string
+    uniqueItems: false
+  params:
+    items:
+      $ref: ./OperationParamDescription.yml
+    type: array
+    uniqueItems: false
+  requires:
+    type: string
+    uniqueItems: false
+  signature:
+    items:
+      type: string
+    type: array
+    uniqueItems: false
+  url:
+    type: string
+    uniqueItems: false
+required:
+  - id
+  - label
+  - params
+  - signature
+  - url
+uniqueItems: false

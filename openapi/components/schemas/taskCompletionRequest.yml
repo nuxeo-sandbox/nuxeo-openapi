@@ -1,0 +1,20 @@
+properties:
+  comment:
+    type: string
+    uniqueItems: false
+  entity-type:
+    type: string
+    uniqueItems: false
+  nodeVariables:
+    items:
+      $ref: ./Property.yml
+    type: object
+    uniqueItems: true
+  worflowVariables:
+    items:
+      $ref: ./Property.yml
+    type: object
+    uniqueItems: true
+required:
+  - entity-type
+uniqueItems: false

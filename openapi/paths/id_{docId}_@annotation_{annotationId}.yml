@@ -1,0 +1,56 @@
+delete:
+  operationId: DocumentIdAnnotationIdAdapterDelete
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+    - description: Id of the annotation
+      in: path
+      name: annotationId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Delete an annotation on a document given its id
+  tags:
+    - Annotation 
+    - Adapter
+get:
+  operationId: DocumentIdAnnotationIdAdapterGet
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+    - description: Id of the annotation
+      in: path
+      name: annotationId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/annotation.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Retrieve an annotation on a document given its id
+  tags:
+    - Annotation 
+    - Adapter

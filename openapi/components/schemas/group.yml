@@ -1,0 +1,15 @@
+properties:
+  label:
+    type: string
+    uniqueItems: false
+  name:
+    type: string
+    uniqueItems: false
+  url:
+    type: string
+    uniqueItems: false
+required:
+  - label
+  - name
+  - url
+uniqueItems: false

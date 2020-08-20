@@ -1,0 +1,16 @@
+get:
+  operationId: ConfigurationFacetsGet
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/facet.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: List registered facets
+  tags:
+    - Configuration

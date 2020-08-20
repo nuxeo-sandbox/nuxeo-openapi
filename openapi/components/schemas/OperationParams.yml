@@ -1,0 +1,11 @@
+properties:
+  context:
+    type: object
+    uniqueItems: false
+  params:
+    type: object
+    uniqueItems: false
+required:
+  - context
+  - params
+uniqueItems: false

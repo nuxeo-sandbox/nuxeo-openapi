@@ -2,12 +2,14 @@
   "name": "nuxeo-platform",
   "version": "1.0.0",
   "dependencies": {
-    "@redocly/openapi-cli": "^1.0.0-beta.8"
+    "@redocly/openapi-cli": "^1.0.0-beta.8",
+    "redoc": "^2.0.0-rc.37",
+    "redoc-cli": "^0.9.11"
   },
   "private": true,
   "scripts": {
     "start": "openapi preview-docs",
-    "build": "openapi bundle -o dist",
+    "build": "openapi bundle -o docs/dist",
     "test": "openapi lint"
   }
 }

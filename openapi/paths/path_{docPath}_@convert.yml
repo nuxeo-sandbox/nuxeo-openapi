@@ -1,0 +1,45 @@
+get:
+  operationId: DocumentPathConvertAdapterGet
+  parameters:
+    - description: 'Path of the document, ex: ''default-domain'''
+      in: path
+      name: docPath
+      required: true
+      schema:
+        type: string
+    - description: The name of the converter to execute
+      in: query
+      name: name
+      required: false
+      schema:
+        type: string
+    - description: >-
+        The requested mime type for the converted Blob, such as
+        'application/pdf'
+      in: query
+      name: type
+      required: false
+      schema:
+        type: string
+    - description: 'The requested extension of the converted Blob, such as ''pdf'''
+      in: query
+      name: format
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/documents.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: 'One of the ''name'', ''type'' or ''format'' parameters must be passed.'
+  summary: Convert the main Blob of the document
+  tags:
+    - Conversion 
+    - Adapter

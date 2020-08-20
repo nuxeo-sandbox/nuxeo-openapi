@@ -1,0 +1,33 @@
+put:
+  operationId: TaskReassignPut
+  parameters:
+    - description: Id of the task
+      in: path
+      name: taskId
+      required: true
+      schema:
+        type: string
+    - description: comma separated ids of the new actors
+      in: query
+      name: actors
+      required: true
+      schema:
+        type: string
+    - description: comment
+      in: query
+      name: comment
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: 'See https://doc.nuxeo.com/x/1YcZAQ'
+  summary: Reassign a task
+  tags:
+    - Workflow
+    - Task

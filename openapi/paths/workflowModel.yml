@@ -1,0 +1,16 @@
+get:
+  operationId: WorkflowModelGet
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/workflows.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Get the workflow models
+  tags:
+    - Workflow Model

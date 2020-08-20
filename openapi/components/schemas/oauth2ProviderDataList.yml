@@ -1,0 +1,64 @@
+properties:
+  currentPageIndex:
+    type: integer
+    uniqueItems: false
+  currentPageOffset:
+    type: integer
+    uniqueItems: false
+  currentPageSize:
+    type: integer
+    uniqueItems: false
+  entity-type:
+    type: string
+    uniqueItems: false
+  entries:
+    items:
+      $ref: ./oauth2ProviderData.yml
+    type: array
+    uniqueItems: false
+  erroMessage:
+    type: string
+    uniqueItems: false
+  hasError:
+    type: boolean
+    uniqueItems: false
+  isLastPageAvailable:
+    type: boolean
+    uniqueItems: false
+  isNext:
+    type: boolean
+    uniqueItems: false
+  isPaginable:
+    type: boolean
+    uniqueItems: false
+  isPreviousPageAvailable:
+    type: boolean
+    uniqueItems: false
+  isSortable:
+    type: boolean
+    uniqueItems: false
+  maxPageSize:
+    type: integer
+    uniqueItems: false
+  numberOfPages:
+    type: integer
+    uniqueItems: false
+  pageCount:
+    type: integer
+    uniqueItems: false
+  pageIndex:
+    type: integer
+    uniqueItems: false
+  pageSize:
+    type: integer
+    uniqueItems: false
+  resultCount:
+    type: integer
+    uniqueItems: false
+  totalSize:
+    type: integer
+    uniqueItems: false
+required:
+  - entity-type
+  - entries
+uniqueItems: false

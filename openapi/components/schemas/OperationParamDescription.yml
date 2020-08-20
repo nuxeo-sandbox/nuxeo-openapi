@@ -1,0 +1,30 @@
+properties:
+  description:
+    type: string
+    uniqueItems: false
+  name:
+    type: string
+    uniqueItems: false
+  order:
+    type: integer
+    uniqueItems: false
+  required:
+    type: boolean
+    uniqueItems: false
+  type:
+    type: string
+    uniqueItems: false
+  values:
+    items:
+      type: string
+    type: array
+    uniqueItems: false
+  widget:
+    type: string
+    uniqueItems: false
+required:
+  - description
+  - name
+  - required
+  - type
+uniqueItems: false

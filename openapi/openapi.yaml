@@ -1,84 +1,263 @@
 openapi: 3.0.2
 info:
-  version: 1.0.0
-  title: Example.com
-  termsOfService: 'https://example.com/terms/'
+  version: LTS 2019
+  title: Nuxeo Platform
+  termsOfService: 'https://nuxeo.com/terms/'
   contact:
-    email: contact@example.com
-    url: 'http://example.com/contact'
+    email: support@nuxeo.com
+    url: 'https://nuxeo.com/contact'
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   x-logo:
-    url: 'https://redocly.github.io/openapi-template/logo.png'
-  description: >
-    This is an **example** API to demonstrate features of OpenAPI specification
+    url: 'https://d1q6f0aelx0por.cloudfront.net/product-logos/library-nuxeo-logo.png'
+  description: >-
+    # Nuxeo Platform
+    https://www.nuxeo.com/
 
-    # Introduction
-
-    This API definition is intended to to be a good starting point for
-    describing your API in 
-
-    [OpenAPI/Swagger
-    format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md).
-
-    It also demonstrates features of
-    [create-openapi-repo](https://github.com/Redocly/create-openapi-repo) tool
-    and 
-
-    [Redoc](https://github.com/Redocly/Redoc) documentation engine. So beyond
-    the standard OpenAPI syntax we use a few 
-
-    [vendor
-    extensions](https://github.com/Redocly/Redoc/blob/master/docs/redoc-vendor-extensions.md).
-
-
-    # OpenAPI Specification
-
-    The goal of The OpenAPI Specification is to define a standard,
-    language-agnostic interface to REST APIs which
-
-    allows both humans and computers to discover and understand the capabilities
-    of the service without access to source
-
-    code, documentation, or through network traffic inspection. When properly
-    defined via OpenAPI, a consumer can 
-
-    understand and interact with the remote service with a minimal amount of
-    implementation logic. Similar to what
-
-    interfaces have done for lower-level programming, OpenAPI removes the
-    guesswork in calling the service.
+    OpenAPI 3.0 Specification for the Nuxeo Platform.
 externalDocs:
-  description: Find out how to create a GitHub repo for your OpenAPI definition.
-  url: 'https://github.com/Rebilly/generator-openapi-repo'
-tags:
-  - name: Echo
-    description: Example echo operations
-  - name: User
-    description: Operations about user
+  description: Nuxeo Documentation
+  url: 'https://doc.nuxeo.com/'
 servers:
-  - url: 'http://example.com/api/v1'
-  - url: 'https://example.com/api/v1'
-paths:
-  '/users/{username}':
-    $ref: 'paths/users@{username}.yaml'
-  /echo:
-    $ref: paths/echo.yaml
+  - url: 'https://nightly.nuxeo.com/nuxeo/api/v1'
+    description: Nuxeo Platform Nightly Test Server
+  - url: 'https://{host}:{port}/nuxeo/api/v1'
+    variables:
+      host:
+        default: demo.nuxeo.com
+        description: Nuxeo Platform Host
+      port:
+        default: 443
+        description: Nuxeo Platform Port
 components:
   securitySchemes:
-    main_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: 'http://example.com/api/oauth/dialog'
-          scopes:
-            'read:users': read users info
-            'write:users': modify or remove users
-    api_key:
-      type: apiKey
-      in: header
-      name: api_key
     basic_auth:
       type: http
       scheme: basic
+    token:
+      type: apiKey
+      in: header
+      name: X-Authentication-Token
+tags:
+  - name: Adapter
+    description: Adaptation Endpoints
+  - name: Config
+    description: Configuration Information
+  - name: Directory
+    description: Directory Operations
+  - name: Document
+    description: Document Operations
+  - name: Group
+    description: Group Operations
+  - name: User
+    description: User Operations
+  - name: OAuth2
+    description: OAuth2 Operations
+  - name: Search
+    description: Search Operations
+  - name: Token
+    description: Authentication Token Operations
+  - name: Workflow
+    description: Workflow Operations
+  - name: Workflow Model
+    description: Workflow Model Information
+  - name: Automation
+    description: Automation Operations
+  - name: Business Object
+    description: Business Object Operations
+paths:
+  '/id/{docId}/@acl':
+    $ref: './paths/id_{docId}_@acl.yml'
+  '/path/{docPath}/@acl':
+    $ref: './paths/path_{docPath}_@acl.yml'
+  '/id/{docId}/@annotation':
+    $ref: './paths/id_{docId}_@annotation.yml'
+  '/id/{docId}/@annotation/{annotationId}':
+    $ref: './paths/id_{docId}_@annotation_{annotationId}.yml'
+  '/id/{docId}/@audit':
+    $ref: './paths/id_{docId}_@audit.yml'
+  '/path/{docPath}/@audit':
+    $ref: './paths/path_{docPath}_@audit.yml'
+  /automation:
+    $ref: ./paths/automation.yml
+  '/automation/{operationName}':
+    $ref: './paths/automation_{operationName}.yml'
+  '/path/{docPath}/@children/@op/{operationName}':
+    $ref: './paths/path_{docPath}_@children_@op_{operationName}.yml'
+  '/path/{docPath}/@op/{operationName}':
+    $ref: './paths/path_{docPath}_@op_{operationName}.yml'
+  '/id/{docId}/@blob/{fieldPath}':
+    $ref: './paths/id_{docId}_@blob_{fieldPath}.yml'
+  '/path/{docPath}/@blob/{fieldPath}':
+    $ref: './paths/path_{docPath}_@blob_{fieldPath}.yml'
+  '/id/{docId}/@bo/{adapterName}':
+    $ref: './paths/id_{docId}_@bo_{adapterName}.yml'
+  '/id/{docId}/@bo/{adapterName}/{docName}':
+    $ref: './paths/id_{docId}_@bo_{adapterName}_{docName}.yml'
+  '/id/{docId}/@children/@bo/{adapterName}':
+    $ref: './paths/id_{docId}_@children_@bo_{adapterName}.yml'
+  '/path/{docPath}/@bo/{adapterName}':
+    $ref: './paths/path_{docPath}_@bo_{adapterName}.yml'
+  '/path/{docPath}/@bo/{adapterName}/{docName}':
+    $ref: './paths/path_{docPath}_@bo_{adapterName}_{docName}.yml'
+  '/path/{docPath}/@children/@bo/{adapterName}':
+    $ref: './paths/path_{docPath}_@children_@bo_{adapterName}.yml'
+  '/id/{docId}/@children':
+    $ref: './paths/id_{docId}_@children.yml'
+  '/path/{docPath}/@children':
+    $ref: './paths/path_{docPath}_@children.yml'
+  '/id/{docId}/@blob/{blobXpath}/@convert':
+    $ref: './paths/id_{docId}_@blob_{blobXpath}_@convert.yml'
+  '/id/{docId}/@convert':
+    $ref: './paths/id_{docId}_@convert.yml'
+  '/path/{docPath}/@blob/{blobXpath}/@convert':
+    $ref: './paths/path_{docPath}_@blob_{blobXpath}_@convert.yml'
+  '/path/{docPath}/@convert':
+    $ref: './paths/path_{docPath}_@convert.yml'
+  '/directory/{directoryName}':
+    $ref: './paths/directory_{directoryName}.yml'
+  '/directory/{directoryName}/{entryId}':
+    $ref: './paths/directory_{directoryName}_{entryId}.yml'
+  /config/types:
+    $ref: ./paths/config_types.yml
+  '/config/types/{docType}':
+    $ref: './paths/config_types_{docType}.yml'
+  /@emptyWithDefault:
+    $ref: ./paths/@emptyWithDefault.yml
+  '/id/{docId}/@emptyWithDefault':
+    $ref: './paths/id_{docId}_@emptyWithDefault.yml'
+  '/path/{docPath}/@emptyWithDefault':
+    $ref: './paths/path_{docPath}_@emptyWithDefault.yml'
+  /config/facets:
+    $ref: ./paths/config_facets.yml
+  '/config/facets/{facet}':
+    $ref: './paths/config_facets_{facet}.yml'
+  /group:
+    $ref: ./paths/group.yml
+  /group/search:
+    $ref: ./paths/group_search.yml
+  '/group/{groupName}':
+    $ref: './paths/group_{groupName}.yml'
+  '/group/{groupName}/@groups':
+    $ref: './paths/group_{groupName}_@groups.yml'
+  '/group/{groupName}/@users':
+    $ref: './paths/group_{groupName}_@users.yml'
+  '/group/{groupName}/user/{userName}':
+    $ref: './paths/group_{groupName}_user_{userName}.yml'
+  '/id/{docId}':
+    $ref: './paths/id_{docId}.yml'
+  '/repo/{repoId}/id/{docId}':
+    $ref: './paths/repo_{repoId}_id_{docId}.yml'
+  /me:
+    $ref: ./paths/me.yml
+  /me/changepassword:
+    $ref: ./paths/me_changepassword.yml
+  /oauth2/client:
+    $ref: ./paths/oauth2_client.yml
+  '/oauth2/client/{oauth2ClientId}':
+    $ref: './paths/oauth2_client_{oauth2ClientId}.yml'
+  /oauth2/provider:
+    $ref: ./paths/oauth2_provider.yml
+  '/oauth2/provider/{oauth2ProviderId}':
+    $ref: './paths/oauth2_provider_{oauth2ProviderId}.yml'
+  '/oauth2/provider/{oauth2ProviderId}/token':
+    $ref: './paths/oauth2_provider_{oauth2ProviderId}_token.yml'
+  /oauth2/token:
+    $ref: ./paths/oauth2_token.yml
+  /oauth2/token/client:
+    $ref: ./paths/oauth2_token_client.yml
+  '/oauth2/token/client/{oauth2ClientId}/user/{userName}':
+    $ref: './paths/oauth2_token_client_{oauth2ClientId}_user_{userName}.yml'
+  /oauth2/token/provider:
+    $ref: ./paths/oauth2_token_provider.yml
+  '/oauth2/token/provider/{oauth2ProviderId}/user/{userName}':
+    $ref: './paths/oauth2_token_provider_{oauth2ProviderId}_user_{userName}.yml'
+  /oauth2/token/search:
+    $ref: ./paths/oauth2_token_search.yml
+  '/oauth2/token/{oAuth2TokenType}':
+    $ref: './paths/oauth2_token_{oAuth2TokenType}.yml'
+  '/path/{docPath}':
+    $ref: './paths/path_{docPath}.yml'
+  '/repo/{repoId}/path/{docPath}':
+    $ref: './paths/repo_{repoId}_path_{docPath}.yml'
+  '/id/{docId}/@pp/{pageProviderName}':
+    $ref: './paths/id_{docId}_@pp_{pageProviderName}.yml'
+  '/path/{docPath}/@pp/{pageProviderName}':
+    $ref: './paths/path_{docPath}_@pp_{pageProviderName}.yml'
+  /query:
+    $ref: ./paths/query.yml
+  '/query/{providerName}':
+    $ref: './paths/query_{providerName}.yml'
+  '/id/{docId}/@rendition/{renditionName}':
+    $ref: './paths/id_{docId}_@rendition_{renditionName}.yml'
+  '/path/{docPath}/@rendition/{renditionName}':
+    $ref: './paths/path_{docPath}_@rendition_{renditionName}.yml'
+  /config/schemas:
+    $ref: ./paths/config_schemas.yml
+  '/config/schemas/{schema}':
+    $ref: './paths/config_schemas_{schema}.yml'
+  '/search/lang/{queryLanguage}/bulk/{actionId}':
+    $ref: './paths/search_lang_{queryLanguage}_bulk_{actionId}.yml'
+  '/search/lang/{queryLanguage}/execute':
+    $ref: './paths/search_lang_{queryLanguage}_execute.yml'
+  '/search/pp/{providerName}':
+    $ref: './paths/search_pp_{providerName}.yml'
+  '/search/pp/{providerName}/bulk/{actionId}':
+    $ref: './paths/search_pp_{providerName}_bulk_{actionId}.yml'
+  '/search/pp/{providerName}/execute':
+    $ref: './paths/search_pp_{providerName}_execute.yml'
+  /search/saved:
+    $ref: ./paths/search_saved.yml
+  '/search/saved/{searchId}':
+    $ref: './paths/search_saved_{searchId}.yml'
+  '/search/saved/{searchId}/bulk/{actionId}':
+    $ref: './paths/search_saved_{searchId}_bulk_{actionId}.yml'
+  '/search/saved/{searchId}/execute':
+    $ref: './paths/search_saved_{searchId}_execute.yml'
+  '/id/{docId}/@search':
+    $ref: './paths/id_{docId}_@search.yml'
+  '/path/{docPath}/@search':
+    $ref: './paths/path_{docPath}_@search.yml'
+  '/id/{docId}/@task':
+    $ref: './paths/id_{docId}_@task.yml'
+  '/path/{docPath}/@task':
+    $ref: './paths/path_{docPath}_@task.yml'
+  /task:
+    $ref: ./paths/task.yml
+  '/task/{taskId}':
+    $ref: './paths/task_{taskId}.yml'
+  '/task/{taskId}/delegate':
+    $ref: './paths/task_{taskId}_delegate.yml'
+  '/task/{taskId}/reassign':
+    $ref: './paths/task_{taskId}_reassign.yml'
+  '/task/{taskId}/{action}':
+    $ref: './paths/task_{taskId}_{action}.yml'
+  /token:
+    $ref: ./paths/token.yml
+  '/token/{token}':
+    $ref: './paths/token_{token}.yml'
+  /user:
+    $ref: ./paths/user.yml
+  /user/search:
+    $ref: ./paths/user_search.yml
+  '/user/{userName}':
+    $ref: './paths/user_{userName}.yml'
+  '/user/{userName}/group/{groupName}':
+    $ref: './paths/user_{userName}_group_{groupName}.yml'
+  '/id/{docId}/@workflow':
+    $ref: './paths/id_{docId}_@workflow.yml'
+  '/path/{docPath}/@workflow':
+    $ref: './paths/path_{docPath}_@workflow.yml'
+  /workflow:
+    $ref: ./paths/workflow.yml
+  '/workflow/{workflowInstanceId}':
+    $ref: './paths/workflow_{workflowInstanceId}.yml'
+  '/workflow/{workflowInstanceId}/graph':
+    $ref: './paths/workflow_{workflowInstanceId}_graph.yml'
+  /workflowModel:
+    $ref: ./paths/workflowModel.yml
+  '/workflowModel/{modelName}':
+    $ref: './paths/workflowModel_{modelName}.yml'
+  '/workflowModel/{modelName}/graph':
+    $ref: './paths/workflowModel_{modelName}_graph.yml'

@@ -1,0 +1,58 @@
+properties:
+  actors:
+    items:
+      type: string
+    type: array
+  comments:
+    items:
+      $ref: ./taskComments.yml
+    type: array
+  created:
+    format: date
+    type: string
+    uniqueItems: false
+  directive:
+    type: string
+    uniqueItems: false
+  dueDate:
+    format: date
+    type: string
+    uniqueItems: false
+  entity-type:
+    type: string
+    uniqueItems: false
+  id:
+    type: string
+    uniqueItems: false
+  name:
+    type: string
+    uniqueItems: false
+  nodeName:
+    format: date
+    type: string
+    uniqueItems: false
+  state:
+    type: string
+    uniqueItems: false
+  targetDocumentIds:
+    items:
+      type: string
+    type: array
+  taskInfo:
+    $ref: ./taskInfo.yml
+    uniqueItems: true
+  type:
+    format: date
+    type: string
+    uniqueItems: false
+  variables:
+    items:
+      $ref: ./Property.yml
+    type: object
+    uniqueItems: true
+  workflowId:
+    type: string
+    uniqueItems: false
+required:
+  - entity-type
+uniqueItems: false

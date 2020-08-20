@@ -1,0 +1,6363 @@
+openapi: 3.0.2
+info:
+  version: LTS 2019
+  title: Nuxeo Platform
+  termsOfService: 'https://nuxeo.com/terms/'
+  contact:
+    email: support@nuxeo.com
+    url: 'https://nuxeo.com/contact'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  x-logo:
+    url: 'https://d1q6f0aelx0por.cloudfront.net/product-logos/library-nuxeo-logo.png'
+  description: |-
+    # Nuxeo Platform https://www.nuxeo.com/
+    OpenAPI 3.0 Specification for the Nuxeo Platform.
+externalDocs:
+  description: Nuxeo Documentation
+  url: 'https://doc.nuxeo.com/'
+servers:
+  - url: 'https://nightly.nuxeo.com/nuxeo/api/v1'
+    description: Nuxeo Platform Nightly Test Server
+  - url: 'https://{host}:{port}/nuxeo/api/v1'
+    variables:
+      host:
+        default: demo.nuxeo.com
+        description: Nuxeo Platform Host
+      port:
+        default: 443
+        description: Nuxeo Platform Port
+components:
+  securitySchemes:
+    basic_auth:
+      type: http
+      scheme: basic
+    token:
+      type: apiKey
+      in: header
+      name: X-Authentication-Token
+  schemas:
+    Ace:
+      properties:
+        granted:
+          type: boolean
+          uniqueItems: false
+        permission:
+          type: string
+          uniqueItems: false
+        username:
+          type: string
+          uniqueItems: false
+      required:
+        - granted
+        - permission
+        - username
+      uniqueItems: false
+    Acl:
+      properties:
+        ace:
+          items:
+            $ref: '#/components/schemas/Ace'
+          type: array
+          uniqueItems: false
+        name:
+          type: string
+          uniqueItems: false
+      required:
+        - ace
+        - name
+      uniqueItems: false
+    Acp:
+      properties:
+        acls:
+          items:
+            $ref: '#/components/schemas/Acl'
+          type: array
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+      required:
+        - entity-type
+      uniqueItems: false
+    annotation:
+      properties:
+        security:
+          type: string
+          uniqueItems: false
+        color:
+          type: string
+          uniqueItems: false
+        creationDate:
+          format: date-time
+          type: string
+          uniqueItems: false
+        date:
+          format: date-time
+          type: string
+          uniqueItems: false
+        documentId:
+          type: string
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        flags:
+          type: string
+          uniqueItems: false
+        id:
+          type: string
+          uniqueItems: false
+        lastModifier:
+          type: string
+          uniqueItems: false
+        name:
+          type: string
+          uniqueItems: false
+        opacity:
+          format: double
+          type: number
+          uniqueItems: false
+        page:
+          type: integer
+          uniqueItems: false
+        position:
+          type: string
+          uniqueItems: false
+        subject:
+          type: string
+          uniqueItems: false
+        xpath:
+          type: string
+          uniqueItems: false
+      required:
+        - creationDate
+        - date
+        - documentId
+        - entity-type
+        - flags
+        - id
+        - lastModifier
+        - name
+        - opacity
+        - page
+        - position
+        - security
+        - subject
+        - xpath
+      uniqueItems: false
+    annotationList:
+      properties:
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/annotation'
+          type: array
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    LogEntry:
+      properties:
+        category:
+          type: string
+          uniqueItems: false
+        comment:
+          type: string
+          uniqueItems: false
+        docLifeCycle:
+          type: string
+          uniqueItems: false
+        docPath:
+          type: string
+          uniqueItems: false
+        docType:
+          type: string
+          uniqueItems: false
+        docUUID:
+          type: string
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        eventDate:
+          format: date-time
+          type: string
+          uniqueItems: false
+        eventId:
+          type: string
+          uniqueItems: false
+        logDate:
+          format: date-time
+          type: string
+          uniqueItems: false
+        principalName:
+          type: string
+          uniqueItems: false
+        repositoryId:
+          type: string
+          uniqueItems: false
+      required:
+        - category
+        - comment
+        - docLifeCycle
+        - docPath
+        - docType
+        - docUUID
+        - entity-type
+        - eventDate
+        - eventId
+        - logDate
+        - principalName
+        - repositoryId
+      uniqueItems: false
+    LogEntries:
+      properties:
+        currentPageIndex:
+          type: integer
+          uniqueItems: false
+        currentPageOffset:
+          type: integer
+          uniqueItems: false
+        currentPageSize:
+          type: integer
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/LogEntry'
+          type: array
+          uniqueItems: false
+        erroMessage:
+          type: string
+          uniqueItems: false
+        hasError:
+          type: boolean
+          uniqueItems: false
+        isLastPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isNext:
+          type: boolean
+          uniqueItems: false
+        isPaginable:
+          type: boolean
+          uniqueItems: false
+        isPreviousPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isSortable:
+          type: boolean
+          uniqueItems: false
+        maxPageSize:
+          type: integer
+          uniqueItems: false
+        numberOfPages:
+          type: integer
+          uniqueItems: false
+        pageCount:
+          type: integer
+          uniqueItems: false
+        pageIndex:
+          type: integer
+          uniqueItems: false
+        pageSize:
+          type: integer
+          uniqueItems: false
+        resultCount:
+          type: integer
+          uniqueItems: false
+        totalSize:
+          type: integer
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    OperationParamDescription:
+      properties:
+        description:
+          type: string
+          uniqueItems: false
+        name:
+          type: string
+          uniqueItems: false
+        order:
+          type: integer
+          uniqueItems: false
+        required:
+          type: boolean
+          uniqueItems: false
+        type:
+          type: string
+          uniqueItems: false
+        values:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        widget:
+          type: string
+          uniqueItems: false
+      required:
+        - description
+        - name
+        - required
+        - type
+      uniqueItems: false
+    OperationDescription:
+      properties:
+        category:
+          type: string
+          uniqueItems: false
+        description:
+          type: string
+          uniqueItems: false
+        id:
+          type: string
+          uniqueItems: false
+        label:
+          type: string
+          uniqueItems: false
+        params:
+          items:
+            $ref: '#/components/schemas/OperationParamDescription'
+          type: array
+          uniqueItems: false
+        requires:
+          type: string
+          uniqueItems: false
+        signature:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        url:
+          type: string
+          uniqueItems: false
+      required:
+        - id
+        - label
+        - params
+        - signature
+        - url
+      uniqueItems: false
+    OperationDescriptionList:
+      properties:
+        codec:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        operations:
+          items:
+            $ref: '#/components/schemas/OperationDescription'
+          type: array
+          uniqueItems: false
+        path:
+          type: object
+          uniqueItems: false
+      required:
+        - codec
+        - operations
+        - path
+      uniqueItems: false
+    OperationParams:
+      properties:
+        context:
+          type: object
+          uniqueItems: false
+        params:
+          type: object
+          uniqueItems: false
+      required:
+        - context
+        - params
+      uniqueItems: false
+    BusinessObject:
+      properties:
+        entity-type:
+          type: string
+          uniqueItems: false
+        value:
+          type: object
+          uniqueItems: false
+      required:
+        - entity-type
+      uniqueItems: false
+    BusinessObjectList:
+      properties:
+        currentPageIndex:
+          type: integer
+          uniqueItems: false
+        currentPageOffset:
+          type: integer
+          uniqueItems: false
+        currentPageSize:
+          type: integer
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/BusinessObject'
+          type: array
+          uniqueItems: false
+        erroMessage:
+          type: string
+          uniqueItems: false
+        hasError:
+          type: boolean
+          uniqueItems: false
+        isLastPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isNext:
+          type: boolean
+          uniqueItems: false
+        isPaginable:
+          type: boolean
+          uniqueItems: false
+        isPreviousPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isSortable:
+          type: boolean
+          uniqueItems: false
+        maxPageSize:
+          type: integer
+          uniqueItems: false
+        numberOfPages:
+          type: integer
+          uniqueItems: false
+        pageCount:
+          type: integer
+          uniqueItems: false
+        pageIndex:
+          type: integer
+          uniqueItems: false
+        pageSize:
+          type: integer
+          uniqueItems: false
+        resultCount:
+          type: integer
+          uniqueItems: false
+        totalSize:
+          type: integer
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    Property:
+      properties:
+        context:
+          type: object
+          uniqueItems: false
+        params:
+          type: object
+          uniqueItems: false
+      required:
+        - context
+        - params
+      uniqueItems: false
+    Document:
+      properties:
+        changeToken:
+          type: string
+          uniqueItems: false
+        contextParameters:
+          type: object
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        facets:
+          items:
+            type: string
+          type: array
+        lastModified:
+          format: date
+          type: string
+          uniqueItems: false
+        path:
+          type: string
+          uniqueItems: false
+        properties:
+          items:
+            $ref: '#/components/schemas/Property'
+          type: object
+          uniqueItems: true
+        repository:
+          type: string
+          uniqueItems: false
+        state:
+          type: string
+          uniqueItems: false
+        title:
+          type: string
+          uniqueItems: false
+        type:
+          type: string
+          uniqueItems: false
+        uid:
+          type: string
+          uniqueItems: false
+        versionLabel:
+          type: string
+          uniqueItems: false
+      required:
+        - entity-type
+      uniqueItems: false
+    documents:
+      properties:
+        currentPageIndex:
+          type: integer
+          uniqueItems: false
+        currentPageOffset:
+          type: integer
+          uniqueItems: false
+        currentPageSize:
+          type: integer
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/Document'
+          type: array
+          uniqueItems: false
+        erroMessage:
+          type: string
+          uniqueItems: false
+        hasError:
+          type: boolean
+          uniqueItems: false
+        isLastPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isNext:
+          type: boolean
+          uniqueItems: false
+        isPaginable:
+          type: boolean
+          uniqueItems: false
+        isPreviousPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isSortable:
+          type: boolean
+          uniqueItems: false
+        maxPageSize:
+          type: integer
+          uniqueItems: false
+        numberOfPages:
+          type: integer
+          uniqueItems: false
+        pageCount:
+          type: integer
+          uniqueItems: false
+        pageIndex:
+          type: integer
+          uniqueItems: false
+        pageSize:
+          type: integer
+          uniqueItems: false
+        resultCount:
+          type: integer
+          uniqueItems: false
+        totalSize:
+          type: integer
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    directoryEntry:
+      properties:
+        directoryName:
+          type: string
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        properties:
+          items:
+            $ref: '#/components/schemas/Property'
+          type: object
+          uniqueItems: false
+      required:
+        - directoryName
+        - entity-type
+      uniqueItems: false
+    directoryEntries:
+      properties:
+        currentPageIndex:
+          type: integer
+          uniqueItems: false
+        currentPageOffset:
+          type: integer
+          uniqueItems: false
+        currentPageSize:
+          type: integer
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/directoryEntry'
+          type: array
+          uniqueItems: false
+        erroMessage:
+          type: string
+          uniqueItems: false
+        hasError:
+          type: boolean
+          uniqueItems: false
+        isLastPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isNext:
+          type: boolean
+          uniqueItems: false
+        isPaginable:
+          type: boolean
+          uniqueItems: false
+        isPreviousPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isSortable:
+          type: boolean
+          uniqueItems: false
+        maxPageSize:
+          type: integer
+          uniqueItems: false
+        numberOfPages:
+          type: integer
+          uniqueItems: false
+        pageCount:
+          type: integer
+          uniqueItems: false
+        pageIndex:
+          type: integer
+          uniqueItems: false
+        pageSize:
+          type: integer
+          uniqueItems: false
+        resultCount:
+          type: integer
+          uniqueItems: false
+        totalSize:
+          type: integer
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    docType:
+      properties:
+        entity-type:
+          type: string
+          uniqueItems: false
+        facets:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        parent:
+          type: string
+        schemas:
+          items: {}
+          type: array
+      required:
+        - entity-type
+        - facets
+        - name
+        - parent
+        - schemas
+    document:
+      properties:
+        changeToken:
+          type: string
+          uniqueItems: false
+        contextParameters:
+          type: object
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        facets:
+          items:
+            type: string
+          type: array
+        lastModified:
+          format: date
+          type: string
+          uniqueItems: false
+        path:
+          type: string
+          uniqueItems: false
+        properties:
+          items:
+            $ref: '#/components/schemas/Property'
+          type: object
+          uniqueItems: true
+        repository:
+          type: string
+          uniqueItems: false
+        state:
+          type: string
+          uniqueItems: false
+        title:
+          type: string
+          uniqueItems: false
+        type:
+          type: string
+          uniqueItems: false
+        uid:
+          type: string
+          uniqueItems: false
+        versionLabel:
+          type: string
+          uniqueItems: false
+      required:
+        - entity-type
+      uniqueItems: false
+    facet:
+      properties:
+        name:
+          type: string
+        schemas:
+          items: {}
+          type: array
+      required:
+        - name
+    group:
+      properties:
+        label:
+          type: string
+          uniqueItems: false
+        name:
+          type: string
+          uniqueItems: false
+        url:
+          type: string
+          uniqueItems: false
+      required:
+        - label
+        - name
+        - url
+      uniqueItems: false
+    GroupRef:
+      properties:
+        label:
+          type: string
+          uniqueItems: false
+        name:
+          type: string
+          uniqueItems: false
+        url:
+          type: string
+          uniqueItems: false
+      required:
+        - label
+        - name
+        - url
+      uniqueItems: false
+    user:
+      properties:
+        entity-type:
+          type: string
+          uniqueItems: false
+        extendedGroups:
+          items:
+            $ref: '#/components/schemas/GroupRef'
+          type: object
+          uniqueItems: false
+        id:
+          type: string
+          uniqueItems: false
+        isAdministrator:
+          type: boolean
+          uniqueItems: false
+        isAnonymous:
+          type: boolean
+          uniqueItems: false
+        properties:
+          items:
+            $ref: '#/components/schemas/Property'
+          type: object
+          uniqueItems: false
+      required:
+        - entity-type
+        - id
+        - isAdministrator
+        - isAnonymous
+      uniqueItems: false
+    userList:
+      properties:
+        currentPageIndex:
+          type: integer
+          uniqueItems: false
+        currentPageOffset:
+          type: integer
+          uniqueItems: false
+        currentPageSize:
+          type: integer
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/user'
+          type: array
+          uniqueItems: false
+        erroMessage:
+          type: string
+          uniqueItems: false
+        hasError:
+          type: boolean
+          uniqueItems: false
+        isLastPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isNext:
+          type: boolean
+          uniqueItems: false
+        isPaginable:
+          type: boolean
+          uniqueItems: false
+        isPreviousPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isSortable:
+          type: boolean
+          uniqueItems: false
+        maxPageSize:
+          type: integer
+          uniqueItems: false
+        numberOfPages:
+          type: integer
+          uniqueItems: false
+        pageCount:
+          type: integer
+          uniqueItems: false
+        pageIndex:
+          type: integer
+          uniqueItems: false
+        pageSize:
+          type: integer
+          uniqueItems: false
+        resultCount:
+          type: integer
+          uniqueItems: false
+        totalSize:
+          type: integer
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    changePassword:
+      properties:
+        newPassword:
+          type: string
+        oldPassword:
+          type: string
+      required:
+        - newPassword
+        - oldPassword
+    oauth2ClientData:
+      properties:
+        entity-type:
+          type: string
+          uniqueItems: false
+        id:
+          type: string
+          uniqueItems: false
+        isAutoGrant:
+          type: boolean
+          uniqueItems: false
+        isEnabled:
+          type: boolean
+          uniqueItems: false
+        name:
+          type: string
+          uniqueItems: false
+        redirectURIs:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        secret:
+          type: string
+          uniqueItems: false
+      required:
+        - entity-type
+        - id
+        - name
+        - redirectURIs
+      uniqueItems: false
+    oauth2ClientDataList:
+      properties:
+        currentPageIndex:
+          type: integer
+          uniqueItems: false
+        currentPageOffset:
+          type: integer
+          uniqueItems: false
+        currentPageSize:
+          type: integer
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/oauth2ClientData'
+          type: array
+          uniqueItems: false
+        erroMessage:
+          type: string
+          uniqueItems: false
+        hasError:
+          type: boolean
+          uniqueItems: false
+        isLastPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isNext:
+          type: boolean
+          uniqueItems: false
+        isPaginable:
+          type: boolean
+          uniqueItems: false
+        isPreviousPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isSortable:
+          type: boolean
+          uniqueItems: false
+        maxPageSize:
+          type: integer
+          uniqueItems: false
+        numberOfPages:
+          type: integer
+          uniqueItems: false
+        pageCount:
+          type: integer
+          uniqueItems: false
+        pageIndex:
+          type: integer
+          uniqueItems: false
+        pageSize:
+          type: integer
+          uniqueItems: false
+        resultCount:
+          type: integer
+          uniqueItems: false
+        totalSize:
+          type: integer
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    oauth2ProviderData:
+      properties:
+        authorizationServerURL:
+          type: string
+          uniqueItems: false
+        authorizationURL:
+          type: string
+          uniqueItems: false
+        clientId:
+          type: string
+          uniqueItems: false
+        clientSecret:
+          type: string
+          uniqueItems: false
+        description:
+          type: string
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        isAuthorized:
+          type: boolean
+          uniqueItems: false
+        isAvailable:
+          type: boolean
+          uniqueItems: false
+        isEnabled:
+          type: boolean
+          uniqueItems: false
+        scopes:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        serviceName:
+          type: string
+          uniqueItems: false
+        tokenServerURL:
+          type: string
+          uniqueItems: false
+        userAuthorizationURL:
+          type: string
+          uniqueItems: false
+        userId:
+          type: string
+          uniqueItems: false
+      required:
+        - entity-type
+        - serviceName
+      uniqueItems: false
+    oauth2ProviderDataList:
+      properties:
+        currentPageIndex:
+          type: integer
+          uniqueItems: false
+        currentPageOffset:
+          type: integer
+          uniqueItems: false
+        currentPageSize:
+          type: integer
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/oauth2ProviderData'
+          type: array
+          uniqueItems: false
+        erroMessage:
+          type: string
+          uniqueItems: false
+        hasError:
+          type: boolean
+          uniqueItems: false
+        isLastPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isNext:
+          type: boolean
+          uniqueItems: false
+        isPaginable:
+          type: boolean
+          uniqueItems: false
+        isPreviousPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isSortable:
+          type: boolean
+          uniqueItems: false
+        maxPageSize:
+          type: integer
+          uniqueItems: false
+        numberOfPages:
+          type: integer
+          uniqueItems: false
+        pageCount:
+          type: integer
+          uniqueItems: false
+        pageIndex:
+          type: integer
+          uniqueItems: false
+        pageSize:
+          type: integer
+          uniqueItems: false
+        resultCount:
+          type: integer
+          uniqueItems: false
+        totalSize:
+          type: integer
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    oauth2ProviderTokenData:
+      properties:
+        token:
+          type: string
+          uniqueItems: false
+      required:
+        - token
+      uniqueItems: false
+    oauth2TokenData:
+      properties:
+        clientId:
+          type: string
+          uniqueItems: false
+        creationDate:
+          type: string
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        isShared:
+          type: boolean
+          uniqueItems: false
+        nuxeoLogin:
+          type: string
+          uniqueItems: false
+        serviceLogin:
+          type: string
+          uniqueItems: false
+        serviceName:
+          type: string
+          uniqueItems: false
+        sharedWith:
+          items:
+            type: string
+          type: array
+      required:
+        - entity-type
+        - nuxeoLogin
+        - serviceLogin
+        - serviceName
+      uniqueItems: false
+    oauth2TokenDataList:
+      properties:
+        currentPageIndex:
+          type: integer
+          uniqueItems: false
+        currentPageOffset:
+          type: integer
+          uniqueItems: false
+        currentPageSize:
+          type: integer
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/oauth2TokenData'
+          type: array
+          uniqueItems: false
+        erroMessage:
+          type: string
+          uniqueItems: false
+        hasError:
+          type: boolean
+          uniqueItems: false
+        isLastPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isNext:
+          type: boolean
+          uniqueItems: false
+        isPaginable:
+          type: boolean
+          uniqueItems: false
+        isPreviousPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isSortable:
+          type: boolean
+          uniqueItems: false
+        maxPageSize:
+          type: integer
+          uniqueItems: false
+        numberOfPages:
+          type: integer
+          uniqueItems: false
+        pageCount:
+          type: integer
+          uniqueItems: false
+        pageIndex:
+          type: integer
+          uniqueItems: false
+        pageSize:
+          type: integer
+          uniqueItems: false
+        resultCount:
+          type: integer
+          uniqueItems: false
+        totalSize:
+          type: integer
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    schema:
+      properties:
+        '@prefix':
+          type: string
+        fields:
+          type: object
+        name:
+          type: string
+      required:
+        - '@prefix'
+        - fields
+        - name
+    savedsearch:
+      properties:
+        currentPageIndex:
+          type: string
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        id:
+          type: string
+          uniqueItems: false
+        maxResults:
+          type: string
+          uniqueItems: false
+        pageProviderName:
+          type: string
+          uniqueItems: false
+        pageSize:
+          type: string
+          uniqueItems: false
+        params:
+          type: object
+          uniqueItems: false
+        query:
+          type: string
+          uniqueItems: false
+        queryLanguage:
+          type: string
+          uniqueItems: false
+        queryParams:
+          type: string
+          uniqueItems: false
+        sortBy:
+          type: string
+          uniqueItems: false
+        sortOrder:
+          type: string
+          uniqueItems: false
+        title:
+          type: string
+          uniqueItems: false
+      required:
+        - entity-type
+        - title
+      uniqueItems: false
+    savedsearches:
+      properties:
+        currentPageIndex:
+          type: integer
+          uniqueItems: false
+        currentPageOffset:
+          type: integer
+          uniqueItems: false
+        currentPageSize:
+          type: integer
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/savedsearch'
+          type: array
+          uniqueItems: false
+        erroMessage:
+          type: string
+          uniqueItems: false
+        hasError:
+          type: boolean
+          uniqueItems: false
+        isLastPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isNext:
+          type: boolean
+          uniqueItems: false
+        isPaginable:
+          type: boolean
+          uniqueItems: false
+        isPreviousPageAvailable:
+          type: boolean
+          uniqueItems: false
+        isSortable:
+          type: boolean
+          uniqueItems: false
+        maxPageSize:
+          type: integer
+          uniqueItems: false
+        numberOfPages:
+          type: integer
+          uniqueItems: false
+        pageCount:
+          type: integer
+          uniqueItems: false
+        pageIndex:
+          type: integer
+          uniqueItems: false
+        pageSize:
+          type: integer
+          uniqueItems: false
+        resultCount:
+          type: integer
+          uniqueItems: false
+        totalSize:
+          type: integer
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    taskComments:
+      properties:
+        author:
+          type: string
+          uniqueItems: false
+        date:
+          format: date
+          type: string
+          uniqueItems: false
+      required:
+        - author
+        - date
+      uniqueItems: false
+    taskAction:
+      properties:
+        label:
+          type: string
+          uniqueItems: false
+        name:
+          type: string
+          uniqueItems: false
+        url:
+          type: string
+          uniqueItems: false
+      required:
+        - label
+        - name
+        - url
+      uniqueItems: false
+    layoutResource:
+      properties:
+        name:
+          type: string
+          uniqueItems: false
+        url:
+          $ref: '#/components/schemas/layoutResource'
+          uniqueItems: false
+      required:
+        - name
+        - url
+      uniqueItems: false
+    taskInfo:
+      properties:
+        actions:
+          items:
+            $ref: '#/components/schemas/taskAction'
+          type: array
+          uniqueItems: false
+        layoutResource:
+          $ref: '#/components/schemas/layoutResource'
+          uniqueItems: false
+      required:
+        - actions
+        - layoutResource
+      uniqueItems: false
+    task:
+      properties:
+        actors:
+          items:
+            type: string
+          type: array
+        comments:
+          items:
+            $ref: '#/components/schemas/taskComments'
+          type: array
+        created:
+          format: date
+          type: string
+          uniqueItems: false
+        directive:
+          type: string
+          uniqueItems: false
+        dueDate:
+          format: date
+          type: string
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        id:
+          type: string
+          uniqueItems: false
+        name:
+          type: string
+          uniqueItems: false
+        nodeName:
+          format: date
+          type: string
+          uniqueItems: false
+        state:
+          type: string
+          uniqueItems: false
+        targetDocumentIds:
+          items:
+            type: string
+          type: array
+        taskInfo:
+          $ref: '#/components/schemas/taskInfo'
+          uniqueItems: true
+        type:
+          format: date
+          type: string
+          uniqueItems: false
+        variables:
+          items:
+            $ref: '#/components/schemas/Property'
+          type: object
+          uniqueItems: true
+        workflowId:
+          type: string
+          uniqueItems: false
+      required:
+        - entity-type
+      uniqueItems: false
+    tasks:
+      properties:
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/task'
+          type: array
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    taskCompletionRequest:
+      properties:
+        comment:
+          type: string
+          uniqueItems: false
+        entity-type:
+          type: string
+          uniqueItems: false
+        nodeVariables:
+          items:
+            $ref: '#/components/schemas/Property'
+          type: object
+          uniqueItems: true
+        worflowVariables:
+          items:
+            $ref: '#/components/schemas/Property'
+          type: object
+          uniqueItems: true
+      required:
+        - entity-type
+      uniqueItems: false
+    AuthenticationTokenList:
+      properties:
+        token:
+          type: string
+          uniqueItems: true
+        url:
+          type: string
+          uniqueItems: false
+        userName:
+          type: string
+          uniqueItems: false
+      required:
+        - token
+        - url
+        - userName
+      uniqueItems: false
+    workflow:
+      properties:
+        attachedDocumentIds:
+          items:
+            type: string
+          type: array
+        entity-type:
+          type: string
+          uniqueItems: false
+        id:
+          type: string
+          uniqueItems: false
+        initiator:
+          type: string
+          uniqueItems: false
+        name:
+          type: string
+          uniqueItems: false
+        variables:
+          items:
+            $ref: '#/components/schemas/Property'
+          type: object
+          uniqueItems: true
+      required:
+        - entity-type
+      uniqueItems: false
+    workflows:
+      properties:
+        entity-type:
+          type: string
+          uniqueItems: false
+        entries:
+          items:
+            $ref: '#/components/schemas/workflow'
+          type: array
+          uniqueItems: false
+      required:
+        - entity-type
+        - entries
+      uniqueItems: false
+    workflowRequest:
+      properties:
+        documentIds:
+          items:
+            type: string
+          type: array
+        entity-type:
+          type: string
+          uniqueItems: false
+        worflowVariables:
+          items:
+            $ref: '#/components/schemas/Property'
+          type: object
+          uniqueItems: true
+        workflowModelName:
+          type: string
+          uniqueItems: false
+      required:
+        - entity-type
+      uniqueItems: false
+    workflowGraph:
+      uniqueItems: false
+tags:
+  - name: Adapter
+    description: Adaptation Endpoints
+  - name: Config
+    description: Configuration Information
+  - name: Directory
+    description: Directory Operations
+  - name: Document
+    description: Document Operations
+  - name: Group
+    description: Group Operations
+  - name: User
+    description: User Operations
+  - name: OAuth2
+    description: OAuth2 Operations
+  - name: Search
+    description: Search Operations
+  - name: Token
+    description: Authentication Token Operations
+  - name: Workflow
+    description: Workflow Operations
+  - name: Workflow Model
+    description: Workflow Model Information
+  - name: Automation
+    description: Automation Operations
+  - name: Business Object
+    description: Business Object Operations
+paths:
+  '/id/{docId}/@acl':
+    get:
+      operationId: DocumentIdACLAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acp'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: View the ACL of a document given its id
+      tags:
+        - ACL
+        - Adapter
+  '/path/{docPath}/@acl':
+    get:
+      operationId: DocumentPathACLAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acp'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: View the ACL of a document given its path
+      tags:
+        - ACL
+        - Adapter
+  '/id/{docId}/@annotation':
+    get:
+      operationId: DocumentIdAnnotationAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/annotationList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get all annotations on a given document blob
+      tags:
+        - Annotation
+        - Adapter
+    post:
+      operationId: DocumentIdAnnotationAdapterPost
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/annotation'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/annotation'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Create an annotation on a given document
+      tags:
+        - Annotation
+    put:
+      operationId: DocumentIdAnnotationAdapterPut
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/annotation'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/annotation'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Update an annotation on a given document
+      tags:
+        - Annotation
+        - Adapter
+  '/id/{docId}/@annotation/{annotationId}':
+    delete:
+      operationId: DocumentIdAnnotationIdAdapterDelete
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Id of the annotation
+          in: path
+          name: annotationId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Delete an annotation on a document given its id
+      tags:
+        - Annotation
+        - Adapter
+    get:
+      operationId: DocumentIdAnnotationIdAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Id of the annotation
+          in: path
+          name: annotationId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/annotation'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Retrieve an annotation on a document given its id
+      tags:
+        - Annotation
+        - Adapter
+  '/id/{docId}/@audit':
+    get:
+      operationId: DocumentIdAuditAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogEntries'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: View the audit trail of a document given its id
+      tags:
+        - Audit
+        - Adapter
+  '/path/{docPath}/@audit':
+    get:
+      operationId: DocumentPathAuditAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogEntries'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: View the audit trail of a document given its path
+      tags:
+        - Audit
+        - Adapter
+  /automation:
+    get:
+      operationId: AutomationGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationDescriptionList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Gets the list of all operation/chain
+      tags:
+        - Automation
+  '/automation/{operationName}':
+    get:
+      operationId: AutomationOperationGet
+      parameters:
+        - description: Name of the operation
+          in: path
+          name: operationName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationDescription'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Gets the description of the operation/chain
+      tags:
+        - Automation
+    post:
+      operationId: AutomationOperationPost
+      parameters:
+        - description: Name of the operation
+          in: path
+          name: operationName
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OperationParams'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Execute an operation or a chain on a document
+      tags:
+        - Automation
+  '/path/{docPath}/@children/@op/{operationName}':
+    post:
+      operationId: DocumentPathChildrenOperationAdapterPost
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Name of the operation
+          in: path
+          name: operationName
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OperationParams'
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: This works on every API endpoint that return DocumentList
+      summary: Execute an operation or a chain on the children of a document
+      tags:
+        - Automation
+  '/path/{docPath}/@op/{operationName}':
+    post:
+      operationId: DocumentPathOperationAdapterPost
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Name of the operation
+          in: path
+          name: operationName
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OperationParams'
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Execute an operation or a chain on a document
+      tags:
+        - Automation
+  '/id/{docId}/@blob/{fieldPath}':
+    get:
+      operationId: DocumentIdBlobAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: 'The field path you want do download (ex: file:content)'
+          in: path
+          name: fieldPath
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get the main blob of a document by its id
+      tags:
+        - Blob
+        - Adapter
+  '/path/{docPath}/@blob/{fieldPath}':
+    get:
+      operationId: DocumentPathBlobAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: 'The field path you want do download (ex: file:content)'
+          in: path
+          name: fieldPath
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get the main blob of a document by its path
+      tags:
+        - Blob
+        - Adapter
+  '/id/{docId}/@bo/{adapterName}':
+    get:
+      deprecated: true
+      operationId: DocumentIdBusinessObjectAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+        - description: Name of the adapter
+          in: path
+          name: adapterName
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessObject'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get the business object adapter on a document given its id
+      tags:
+        - Business Object
+    put:
+      deprecated: true
+      operationId: DocumentIdBusinessObjectAdapterPut
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Name of the adapter
+          in: path
+          name: adapterName
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessObject'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessObject'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Updates the business object adapter on a document given its id
+      tags:
+        - Business Object
+  '/id/{docId}/@bo/{adapterName}/{docName}':
+    post:
+      deprecated: true
+      operationId: DocumentIdBusinessObjectAdapterPost
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Name of the adapter
+          in: path
+          name: adapterName
+          required: true
+          schema:
+            type: string
+        - description: Name of the document
+          in: path
+          name: docName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessObject'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Creates a document based on its business object
+      tags:
+        - Business Object
+  '/id/{docId}/@children/@bo/{adapterName}':
+    get:
+      deprecated: true
+      operationId: DocumentIdChildrenBusinessObjectAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Name of the adapter
+          in: path
+          name: adapterName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessObjectList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        <ul><li>If a document can't be adapted, the resulting item will be
+        null</li><li> This type of call works for every API endpoint that
+        responds DocumentList (@search, @pp ...)</li></ul>
+      summary: Get the list of business object of the children of a document by its id
+      tags:
+        - Business Object
+  '/path/{docPath}/@bo/{adapterName}':
+    get:
+      deprecated: true
+      operationId: DocumentPathBusinessObjectAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Name of the adapter
+          in: path
+          name: adapterName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessObject'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get the business object adapter on a document given its path
+      tags:
+        - Business Object
+    put:
+      deprecated: true
+      operationId: DocumentPathBusinessObjectAdapterPut
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Name of the adapter
+          in: path
+          name: adapterName
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessObject'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessObject'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Updates the business object adapter on a document given its path
+      tags:
+        - Business Object
+  '/path/{docPath}/@bo/{adapterName}/{docName}':
+    post:
+      deprecated: true
+      operationId: DocumentPathBusinessObjectAdapterPost
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Name of the adapter
+          in: path
+          name: adapterName
+          required: true
+          schema:
+            type: string
+        - description: Name of the document
+          in: path
+          name: docName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessObject'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Creates a document based on its business object
+      tags:
+        - Business Object
+  '/path/{docPath}/@children/@bo/{adapterName}':
+    get:
+      deprecated: true
+      operationId: DocumentPathChildrenBusinessObjectAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Name of the adapter
+          in: path
+          name: adapterName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessObjectList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        <ul><li>If a document can't be adapted, the resulting item will be
+        null</li><li> This type of call works for every API endpoint that
+        responds DocumentList (@search, @pp ...)</li></ul>
+      summary: >-
+        Get the list of business object of the children of a document by its
+        path
+      tags:
+        - Business Object
+  '/id/{docId}/@children':
+    get:
+      operationId: DocumentIdChildrenAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Index of the current page
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            Offset of the page to retrieve. If set, the 'currentPageIndex'
+            parameter is ignored.
+          in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - description: Size of the page to retrieve. Ignored if offset set
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: Maximum results to retrieve
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property to sort by, for example ''dc:title'''
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order, accepts ''asc'' or ''desc'', default is ''desc'''
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Get the children of a document by its id
+      tags:
+        - Children
+        - Adapter
+  '/path/{docPath}/@children':
+    get:
+      operationId: DocumentPathChildrenAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Index of the current page
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Offset of the page to retrieve. If set, the 'currentPageIndex'
+            parameter is ignored.
+          in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - description: Size of the page to retrieve. Ignored if offset set
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: Maximum results to retrieve
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property to sort by, for example ''dc:title'''
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order, accepts ''asc'' or ''desc'', default is ''desc'''
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Get the children of a document by its path
+      tags:
+        - Children
+        - Adapter
+  '/id/{docId}/@blob/{blobXpath}/@convert':
+    get:
+      operationId: DocumentIdBlobConvertAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: XPath of the blob
+          in: path
+          name: blobXpath
+          required: true
+          schema:
+            type: string
+        - description: The name of the converter to execute
+          in: query
+          name: name
+          required: false
+          schema:
+            type: string
+        - description: >-
+            The requested mime type for the converted Blob, such as
+            'application/pdf'
+          in: query
+          name: type
+          required: false
+          schema:
+            type: string
+        - description: 'The requested extension of the converted Blob, such as ''pdf'''
+          in: query
+          name: format
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: 'One of the ''name'', ''type'' or ''format'' parameters must be passed.'
+      summary: Convert the Blob at the given xpath of the document
+      tags:
+        - Conversion
+        - Adapter
+  '/id/{docId}/@convert':
+    get:
+      operationId: DocumentIdConvertAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: The name of the converter to execute
+          in: query
+          name: name
+          required: false
+          schema:
+            type: string
+        - description: >-
+            The requested mime type for the converted Blob, such as
+            'application/pdf'
+          in: query
+          name: type
+          required: false
+          schema:
+            type: string
+        - description: 'The requested extension of the converted Blob, such as ''pdf'''
+          in: query
+          name: format
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: 'One of the ''name'', ''type'' or ''format'' parameters must be passed.'
+      summary: Convert the main Blob of the document
+      tags:
+        - Conversion
+        - Adapter
+  '/path/{docPath}/@blob/{blobXpath}/@convert':
+    get:
+      operationId: DocumentPathBlobConvertAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: XPath of the blob
+          in: path
+          name: blobXpath
+          required: true
+          schema:
+            type: string
+        - description: The name of the converter to execute
+          in: query
+          name: name
+          required: false
+          schema:
+            type: string
+        - description: >-
+            The requested mime type for the converted Blob, such as
+            'application/pdf'
+          in: query
+          name: type
+          required: false
+          schema:
+            type: string
+        - description: 'The requested extension of the converted Blob, such as ''pdf'''
+          in: query
+          name: format
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: 'One of the ''name'', ''type'' or ''format'' parameters must be passed.'
+      summary: Convert the Blob at the given xpath of the document
+      tags:
+        - Conversion
+        - Adapter
+  '/path/{docPath}/@convert':
+    get:
+      operationId: DocumentPathConvertAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: The name of the converter to execute
+          in: query
+          name: name
+          required: false
+          schema:
+            type: string
+        - description: >-
+            The requested mime type for the converted Blob, such as
+            'application/pdf'
+          in: query
+          name: type
+          required: false
+          schema:
+            type: string
+        - description: 'The requested extension of the converted Blob, such as ''pdf'''
+          in: query
+          name: format
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: 'One of the ''name'', ''type'' or ''format'' parameters must be passed.'
+      summary: Convert the main Blob of the document
+      tags:
+        - Conversion
+        - Adapter
+  '/directory/{directoryName}':
+    get:
+      operationId: DirectoryByNameGet
+      parameters:
+        - description: 'Directory name. Ex: ''subject'''
+          in: path
+          name: directoryName
+          required: true
+          schema:
+            type: string
+        - description: Index of the current page
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            Offset of the page to retrieve. If set, the 'currentPageIndex'
+            parameter is ignored.
+          in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - description: Size of the page to retrieve. Ignored if offset set
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: Maximum results to retrieve
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property to sort by, for example ''dc:title'''
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order, accepts ''asc'' or ''desc'', default is ''desc'''
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/directoryEntries'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get directory entries
+      tags:
+        - Directory
+    post:
+      operationId: DirectoryByNamePost
+      parameters:
+        - description: 'Directory name. Ex: ''subject'''
+          in: path
+          name: directoryName
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/directoryEntry'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/directoryEntry'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Creates a directory entry
+      tags:
+        - Directory
+  '/directory/{directoryName}/{entryId}':
+    delete:
+      operationId: DirectoryEntryDelete
+      parameters:
+        - description: 'Directory name. Ex: ''subject'''
+          in: path
+          name: directoryName
+          required: true
+        - description: Directory entry id
+          in: path
+          name: entryId
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Delete a directory entry
+      tags:
+        - Directory
+    get:
+      operationId: DirectoryEntryGet
+      parameters:
+        - description: 'Directory name. Ex: ''subject'''
+          in: path
+          name: directoryName
+          required: true
+        - description: Directory entry id
+          in: path
+          name: entryId
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/directoryEntry'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get a directory entry
+      tags:
+        - Directory
+    put:
+      operationId: DirectoryEntryPut
+      parameters:
+        - description: 'Directory name. Ex: ''subject'''
+          in: path
+          name: directoryName
+          required: true
+          schema:
+            type: string
+        - description: Directory entry id
+          in: path
+          name: entryId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/directoryEntry'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/directoryEntry'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Update a directory entry
+      tags:
+        - Directory
+  /config/types:
+    get:
+      operationId: ConfigurationTypesGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/docType'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: List registered document type
+      tags:
+        - Configuration
+  '/config/types/{docType}':
+    get:
+      operationId: ConfigurationTypeDocumentGet
+      parameters:
+        - description: The name of the document type
+          in: path
+          name: docType
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/docType'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Document type description
+      tags:
+        - Configuration
+  /@emptyWithDefault:
+    get:
+      operationId: EmptyWithDefaultGet
+      parameters:
+        - description: The type of the empty document to be initialized
+          in: query
+          name: type
+          required: true
+          schema:
+            type: string
+        - description: The name of the empty document to be initialized
+          in: query
+          name: name
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        To retrieve all initialized properties, the 'properties: *' header must
+        be used
+      summary: >-
+        Initialize an empty document with default properties given a document
+        type
+      tags:
+        - Empty Document
+        - Adapter
+  '/id/{docId}/@emptyWithDefault':
+    get:
+      operationId: DocumentIdEmptyWithDefaultAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: The type of the empty document to be initialized
+          in: query
+          name: type
+          required: true
+          schema:
+            type: string
+        - description: The name of the empty document to be initialized
+          in: query
+          name: name
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        To retrieve all initialized properties, the 'properties: *' header must
+        be used
+      summary: >-
+        Initialize an empty document with default properties given a document
+        type and a parent
+      tags:
+        - Empty Document
+        - Adapter
+  '/path/{docPath}/@emptyWithDefault':
+    get:
+      operationId: DocumentPathEmptyWithDefaultAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: The type of the empty document to be initialized
+          in: query
+          name: type
+          required: true
+          schema:
+            type: string
+        - description: The name of the empty document to be initialized
+          in: query
+          name: name
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        To retrieve all initialized properties, the 'properties: *' header must
+        be used
+      summary: >-
+        Initialize an empty document with default properties given a document
+        type and a parent
+      tags:
+        - Empty Document
+        - Adapter
+  /config/facets:
+    get:
+      operationId: ConfigurationFacetsGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/facet'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: List registered facets
+      tags:
+        - Configuration
+  '/config/facets/{facet}':
+    get:
+      operationId: ConfigurationFacetGet
+      parameters:
+        - description: The name of the facet
+          in: path
+          name: facet
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/facet'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Facet description
+      tags:
+        - Configuration
+  /group:
+    post:
+      operationId: GroupPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/group'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/group'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Create a group
+      tags:
+        - Group
+  /group/search:
+    get:
+      operationId: GroupSearchGet
+      parameters:
+        - description: 'Query string. Ex: ''Admin'' will return Administrator user'
+          in: query
+          name: q
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Search a group
+      tags:
+        - Group
+  '/group/{groupName}':
+    delete:
+      operationId: GroupNameDelete
+      parameters:
+        - description: 'Name of the group, ex: ''members'''
+          in: path
+          name: groupName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Delete a group by its name
+      tags:
+        - Group
+    get:
+      operationId: GroupNameGet
+      parameters:
+        - description: 'Name of the group, ex: ''members'''
+          in: path
+          name: groupName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/group'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get a group by its name
+      tags:
+        - Group
+    put:
+      operationId: GroupNamePut
+      parameters:
+        - description: 'Name of the group, ex: ''members'''
+          in: path
+          name: groupName
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/group'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/group'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Update a group by its name
+      tags:
+        - Group
+  '/group/{groupName}/@groups':
+    get:
+      operationId: GroupsAdapterGet
+      parameters:
+        - description: 'Name of the group, ex: ''members'''
+          in: path
+          name: groupName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get the group members of a group
+      tags:
+        - Group
+  '/group/{groupName}/@users':
+    get:
+      operationId: UsersAdapterGet
+      parameters:
+        - description: 'Name of the group, ex: ''members'''
+          in: path
+          name: groupName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get the user members of a group
+      tags:
+        - Group
+  '/group/{groupName}/user/{userName}':
+    post:
+      operationId: GroupUserPost
+      parameters:
+        - description: 'Name of the group, ex: ''members'''
+          in: path
+          name: groupName
+          required: true
+          schema:
+            type: string
+        - description: 'Username of the user, ex: ''Administrator'''
+          in: path
+          name: userName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Add a user to a group
+      tags:
+        - Group
+  '/id/{docId}':
+    delete:
+      operationId: DocumentIdDelete
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Deletes a document by its id
+      tags:
+        - Document
+    get:
+      operationId: DocumentIdGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Find a document by its id
+      tags:
+        - Document
+    post:
+      operationId: DocumentIdPost
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/document'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Creates a document by its parent id
+      tags:
+        - Document
+    put:
+      operationId: DocumentIdPut
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/document'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        Only documents which you have permission can be updated. Only the
+        properties part of the document object is taken into account for update
+      summary: Updates a document by its id
+      tags:
+        - Document
+  '/repo/{repoId}/id/{docId}':
+    delete:
+      operationId: RepoIdDocumentIdDelete
+      parameters:
+        - description: The name of the repository
+          in: path
+          name: repoId
+          required: true
+          schema:
+            type: string
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Deletes a document by its id
+      tags:
+        - Document
+    get:
+      operationId: RepoIdDocumentIdGet
+      parameters:
+        - description: The name of the repository
+          in: path
+          name: repoId
+          required: true
+          schema:
+            type: string
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Find a document by its id
+      tags:
+        - Document
+    post:
+      operationId: RepoIdDocumentIdPost
+      parameters:
+        - description: The name of the repository
+          in: path
+          name: repoId
+          required: true
+          schema:
+            type: string
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/document'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Creates a document by its parent id
+      tags:
+        - Document
+    put:
+      operationId: RepoIdDocumentIdPut
+      parameters:
+        - description: The name of the repository
+          in: path
+          name: repoId
+          required: true
+          schema:
+            type: string
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/document'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        Only documents which you have permission can be updated. Only the
+        properties part of the document object is taken into account for update
+      summary: Updates a document by its id
+      tags:
+        - Document
+  /me:
+    get:
+      operationId: MeGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get the logged in user
+      tags:
+        - User
+  /me/changepassword:
+    put:
+      operationId: MePasswordPut
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/changePassword'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Change the logged in user's password
+      tags:
+        - User
+  /oauth2/client:
+    get:
+      operationId: OAuth2ClientGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2ClientDataList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Retrieves a OAuth2 client.
+      tags:
+        - OAuth2
+    post:
+      operationId: OAuth2ClientPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/oauth2ClientData'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2ClientData'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Adds an OAuth2 client.
+      tags:
+        - OAuth2
+  '/oauth2/client/{oauth2ClientId}':
+    delete:
+      operationId: OAuth2ClientIdDelete
+      parameters:
+        - description: Name of the OAuth2 client
+          in: path
+          name: oauth2ClientId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Deletes an OAuth2 client token.
+      tags:
+        - OAuth2
+    get:
+      operationId: OAuth2ClientIdGet
+      parameters:
+        - description: Name of the OAuth2 client
+          in: path
+          name: oauth2ClientId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2ClientData'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Retrieves an OAuth2 client.
+      tags:
+        - OAuth2
+    put:
+      operationId: OAuth2ClientIdPut
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/oauth2ClientData'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2ClientData'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Update an OAuth2 client.
+      tags:
+        - OAuth2
+  /oauth2/provider:
+    get:
+      operationId: OAuth2ProviderGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2ProviderDataList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Retrieves the list of available OAuth2 providers.
+      tags:
+        - OAuth2
+    post:
+      operationId: OAuth2ProviderPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/oauth2ProviderData'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2ProviderData'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Adds an OAuth2 provider.
+      tags:
+        - OAuth2
+  '/oauth2/provider/{oauth2ProviderId}':
+    get:
+      operationId: OAuth2ProviderIdGet
+      parameters:
+        - description: Name of the OAuth2 provider
+          in: path
+          name: oauth2ProviderId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2ProviderData'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Retrieves OAuth2 provider data for the current user.
+      tags:
+        - OAuth2
+    put:
+      operationId: OAuth2ProviderIdPut
+      parameters:
+        - description: Name of the OAuth2 provider
+          in: path
+          name: oauth2ProviderId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/oauth2ProviderData'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2ProviderData'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Updates an OAuth2 provider.
+      tags:
+        - OAuth2
+  '/oauth2/provider/{oauth2ProviderId}/token':
+    get:
+      operationId: OAuth2ProviderIdTokenGet
+      parameters:
+        - description: Name of the OAuth2 provider
+          in: path
+          name: oauth2ProviderId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2ProviderTokenData'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: >-
+        Retrieves a valid access token to the current user. A new token will be
+        request if the current one is expired.
+      tags:
+        - OAuth2
+  /oauth2/token:
+    get:
+      operationId: OAuth2TokenGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2TokenDataList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Retrieves all OAuth2 tokens.
+      tags:
+        - OAuth2
+  /oauth2/token/client:
+    get:
+      operationId: OAuth2TokenClientGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2TokenDataList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Retrieves all OAuth2 client tokens for the current user.
+      tags:
+        - OAuth2
+  '/oauth2/token/client/{oauth2ClientId}/user/{userName}':
+    delete:
+      operationId: OAuth2TokenClientIdUserDelete
+      parameters:
+        - description: Name of the OAuth2 client
+          in: path
+          name: oauth2ClientId
+          required: true
+          schema:
+            type: string
+        - description: 'Username of the user, ex: ''Administrator'''
+          in: path
+          name: userName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Deletes a OAuth2 client token.
+      tags:
+        - OAuth2
+    get:
+      operationId: OAuth2TokenClientIdUserGet
+      parameters:
+        - description: Name of the OAuth2 client
+          in: path
+          name: oauth2ClientId
+          required: true
+          schema:
+            type: string
+        - description: 'Username of the user, ex: ''Administrator'''
+          in: path
+          name: userName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2TokenData'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Retrieves a OAuth2 client token.
+      tags:
+        - OAuth2
+    put:
+      operationId: OAuth2TokenClientIdUserPut
+      parameters:
+        - description: Name of the OAuth2 client
+          in: path
+          name: oauth2ClientId
+          required: true
+          schema:
+            type: string
+        - description: 'Username of the user, ex: ''Administrator'''
+          in: path
+          name: userName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2TokenData'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Updates an OAuth2 client token.
+      tags:
+        - OAuth2
+  /oauth2/token/provider:
+    get:
+      operationId: OAuth2TokenProviderGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2TokenDataList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Retrieves all OAuth2 provider tokens for the current user.
+      tags:
+        - OAuth2
+  '/oauth2/token/provider/{oauth2ProviderId}/user/{userName}':
+    delete:
+      operationId: OAuth2TokenProviderIdUserDelete
+      parameters:
+        - description: Name of the OAuth2 provider
+          in: path
+          name: oauth2ProviderId
+          required: true
+          schema:
+            type: string
+        - description: 'Username of the user, ex: ''Administrator'''
+          in: path
+          name: userName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Delete an OAuth2 provider token.
+      tags:
+        - OAuth2
+    get:
+      operationId: OAuth2TokenProviderIdUserGet
+      parameters:
+        - description: Name of the OAuth2 provider
+          in: path
+          name: oauth2ProviderId
+          required: true
+          schema:
+            type: string
+        - description: 'Username of the user, ex: ''Administrator'''
+          in: path
+          name: userName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2TokenData'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Gets an OAuth2 provider token.
+      tags:
+        - OAuth2
+    put:
+      operationId: OAuth2TokenProviderIdUserPut
+      parameters:
+        - description: Name of the OAuth2 provider
+          in: path
+          name: oauth2ProviderId
+          required: true
+          schema:
+            type: string
+        - description: 'Username of the user, ex: ''Administrator'''
+          in: path
+          name: userName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2TokenData'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Updates an OAuth2 provider token.
+      tags:
+        - OAuth2
+  /oauth2/token/search:
+    get:
+      operationId: OAuth2TokenSearchGet
+      parameters:
+        - description: The service name or user name to match.
+          in: query
+          name: q
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2TokenDataList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Search tokens that match service name or user parameter.
+      tags:
+        - OAuth2
+  '/oauth2/token/{oAuth2TokenType}':
+    get:
+      operationId: OAuth2TokenTypeGet
+      parameters:
+        - description: >-
+            The oAuth2 token type. AS_PROVIDER to retrieve the provided tokens
+            or AS_CLIENT to retrieve those consumed.
+          in: path
+          name: oAuth2TokenType
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oauth2TokenDataList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: >-
+        Retrieves all OAuth2 tokens by OAuth2 token type. An OAuth2 token can be
+        provided by Nuxeo or consumed.
+      tags:
+        - OAuth2
+  '/path/{docPath}':
+    delete:
+      operationId: DocumentPathDelete
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission can be deleted
+      summary: Deletes a document by its path
+      tags:
+        - Document
+    get:
+      operationId: DocumentPathGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Find a document by its path
+      tags:
+        - Document
+    post:
+      operationId: DocumentPathPost
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/document'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Creates a document by its parent path
+      tags:
+        - Document
+    put:
+      operationId: DocumentPathPut
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/document'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        Only documents which you have permission can be updated. Only the
+        properties part of the document object is taken into account for update
+      summary: Updates a document by its path
+      tags:
+        - Document
+  '/repo/{repoId}/path/{docPath}':
+    delete:
+      operationId: RepoIdDocumentPathDelete
+      parameters:
+        - description: The name of the repository
+          in: path
+          name: repoId
+          required: true
+          schema:
+            type: string
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Deletes a document by its path
+      tags:
+        - Document
+    get:
+      operationId: RepoIdDocumentPathGet
+      parameters:
+        - description: The name of the repository
+          in: path
+          name: repoId
+          required: true
+          schema:
+            type: string
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Find a document by its path
+      tags:
+        - Document
+    post:
+      operationId: RepoIdDocumentPathPost
+      parameters:
+        - description: The name of the repository
+          in: path
+          name: repoId
+          required: true
+          schema:
+            type: string
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/document'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Creates a document by its parent path
+      tags:
+        - Document
+    put:
+      operationId: RepoIdDocumentPathPut
+      parameters:
+        - description: The name of the repository
+          in: path
+          name: repoId
+          required: true
+          schema:
+            type: string
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/document'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        Only documents which you have permission can be updated. Only the
+        properties part of the document object is taken into account for update
+      summary: Updates a document by its path
+      tags:
+        - Document
+  '/id/{docId}/@pp/{pageProviderName}':
+    get:
+      operationId: DocumentIdPageProviderAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: 'Name of the page provider, ex: ''user_domains'''
+          in: path
+          name: pageProviderName
+          required: true
+          schema:
+            type: string
+        - description: Index of the current page
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Offset of the page to retrieve. If set, the 'currentPageIndex'
+            parameter is ignored.
+          in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - description: Size of the page to retrieve. Ignored if offset set
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: Maximum results to retrieve
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property to sort by, for example ''dc:title'''
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order, accepts ''asc'' or ''desc'', default is ''desc'''
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Execute a page provider on document by its id
+      tags:
+        - Search
+        - Adapter
+  '/path/{docPath}/@pp/{pageProviderName}':
+    get:
+      operationId: DocumentPathPageProviderAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: 'Name of the page provider, ex: ''user_domains'''
+          in: path
+          name: pageProviderName
+          required: true
+          schema:
+            type: string
+        - description: Index of the current page
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            Offset of the page to retrieve. If set, the 'currentPageIndex'
+            parameter is ignored.
+          in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - description: Size of the page to retrieve. Ignored if offset set
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: Maximum results to retrieve
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property to sort by, for example ''dc:title'''
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order, accepts ''asc'' or ''desc'', default is ''desc'''
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Execute a page provider on document by its path
+      tags:
+        - Search
+        - Adapter
+  /query:
+    get:
+      operationId: QueryGet
+      parameters:
+        - description: 'The query to perform. (By default: SELECT * FROM Document)'
+          in: query
+          name: query
+          required: false
+          schema:
+            type: string
+        - description: 'The number of entries per page. (By default: 0)'
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: 'The selected page index. (By default: 0)'
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: integer
+        - description: 'The maximum entries. (By default: 200)'
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property(ies) sorting. (Example: sortBy=''dc:title,dc:description'')'
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order. (Example: sortOrder=''DESC,ASC'')'
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Ordered parameters. (Example: for 'Select * From Document where
+            dc:title = ?' -> queryParams='titleA')
+          in: query
+          name: queryParams
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        You can have also named parameters in the query. See
+        http://doc.nuxeo.com/x/qAc5AQ
+      summary: Perform Named Page Provider on the repository
+      tags:
+        - Search
+  '/query/{providerName}':
+    get:
+      operationId: QueryProviderGet
+      parameters:
+        - description: The page provider name.
+          in: path
+          name: providerName
+          required: true
+          schema:
+            type: string
+        - description: 'The number of entries per page. (By default: 0)'
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: 'The selected page index. (By default: 0)'
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: integer
+        - description: 'The maximum entries. (By default: 200)'
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property(ies) sorting. (Example: sortBy=''dc:title,dc:description'')'
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order. (Example: sortOrder=''DESC,ASC'')'
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Ordered parameters. (Example: for 'Select * From Document where
+            dc:title = ?' -> queryParams='titleA')
+          in: query
+          name: queryParams
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        You can have also named parameters in the query. See
+        http://doc.nuxeo.com/x/qAc5AQ
+      summary: Perform Named Page Provider on the repository
+      tags:
+        - Search
+  '/id/{docId}/@rendition/{renditionName}':
+    get:
+      operationId: DocumentIdRenditionAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: 'Name of the rendition, ex: ''pdf'''
+          in: path
+          name: renditionName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Returns the specified rendition on document by its id
+      tags:
+        - Rendition
+        - Adapter
+  '/path/{docPath}/@rendition/{renditionName}':
+    get:
+      operationId: DocumentPathRenditionAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: 'Name of the rendition, ex: ''pdf'''
+          in: path
+          name: renditionName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Returns the specified rendition on document by its path
+      tags:
+        - Rendition
+        - Adapter
+  /config/schemas:
+    get:
+      operationId: ConfigurationSchemasGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/schema'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: List registered schemas
+      tags:
+        - Configuration
+  '/config/schemas/{schema}':
+    get:
+      operationId: ConfigurationSchemaGet
+      parameters:
+        - description: The name of the schema
+          in: path
+          name: schema
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/schema'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Schema description
+      tags:
+        - Configuration
+  '/search/lang/{queryLanguage}/bulk/{actionId}':
+    post:
+      operationId: SearchLangBulkActionPost
+      parameters:
+        - description: The query language.
+          in: path
+          name: queryLanguage
+          required: true
+          schema:
+            type: string
+        - description: 'The query to perform. (By default: SELECT * FROM Document)'
+          in: query
+          name: query
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Ordered parameters. (Example: for 'Select * From Document where
+            dc:title = ?' -> queryParams='titleA')
+          in: query
+          name: queryParams
+          required: false
+          schema:
+            type: string
+        - description: Id of the bulk action
+          in: path
+          name: actionId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        You can have also named parameters in the query. See
+        http://doc.nuxeo.com/x/qAc5AQ
+      summary: Performs a bulk action on the query result.
+      tags:
+        - Search
+  '/search/lang/{queryLanguage}/execute':
+    get:
+      operationId: SearchLangExecuteGet
+      parameters:
+        - description: The query language.
+          in: path
+          name: queryLanguage
+          required: true
+          schema:
+            type: string
+        - description: 'The query to perform. (By default: SELECT * FROM Document)'
+          in: query
+          name: query
+          required: false
+          schema:
+            type: string
+        - description: 'The number of entries per page. (By default: 0)'
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: 'The selected page index. (By default: 0)'
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            The offset of the returned result set. If set, the
+            'currentPageIndex' parameter is ignored.
+          in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - description: 'The maximum entries. (By default: 200)'
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property(ies) sorting. (Example: sortBy=''dc:title,dc:description'')'
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order. (Example: sortOrder=''DESC,ASC'')'
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Ordered parameters. (Example: for 'Select * From Document where
+            dc:title = ?' -> queryParams='titleA')
+          in: query
+          name: queryParams
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        You can have also named parameters in the query. See
+        http://doc.nuxeo.com/x/qAc5AQ
+      summary: Performs a search query.
+      tags:
+        - Search
+  '/search/pp/{providerName}':
+    get:
+      operationId: SearchPageProviderGet
+      parameters:
+        - description: The page provider name.
+          in: path
+          name: providerName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Gets the definition of a page provider.
+      tags:
+        - Search
+  '/search/pp/{providerName}/bulk/{actionId}':
+    post:
+      operationId: SearchPageProviderBulkPost
+      parameters:
+        - description: The page provider name.
+          in: path
+          name: providerName
+          required: true
+          schema:
+            type: string
+        - description: >-
+            Ordered parameters. (Example: for 'Select * From Document where
+            dc:title = ?' -> queryParams='titleA')
+          in: query
+          name: queryParams
+          required: false
+          schema:
+            type: string
+        - description: Id of the bulk action
+          in: path
+          name: actionId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        You can have also named parameters in the query. See
+        http://doc.nuxeo.com/x/qAc5AQ
+      summary: Performs a bulk action on the query result.
+      tags:
+        - Search
+  '/search/pp/{providerName}/execute':
+    get:
+      operationId: SearchPageProviderExecuteGet
+      parameters:
+        - description: The page provider name.
+          in: path
+          name: providerName
+          required: true
+          schema:
+            type: string
+        - description: 'The number of entries per page. (By default: 0)'
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: 'The selected page index. (By default: 0)'
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            The offset of the returned result set. If set, the
+            'currentPageIndex' parameter is ignored.
+          in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - description: 'The maximum entries. (By default: 200)'
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property(ies) sorting. (Example: sortBy=''dc:title,dc:description'')'
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order. (Example: sortOrder=''DESC,ASC'')'
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Ordered parameters. (Example: for 'Select * From Document where
+            dc:title = ?' -> queryParams='titleA')
+          in: query
+          name: queryParams
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: >-
+        You can have also named parameters in the query. See
+        http://doc.nuxeo.com/x/qAc5AQ
+      summary: Perform Named Page Provider on the repository
+      tags:
+        - Search
+  /search/saved:
+    get:
+      operationId: SearchSavedGet
+      parameters:
+        - description: Name of the page provider.
+          in: query
+          name: pageProvider
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/savedsearches'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Returns the list of saved searches.
+      tags:
+        - Search
+    post:
+      operationId: SearchSavedPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/savedsearch'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/savedsearch'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Saves a search.
+      tags:
+        - Search
+  '/search/saved/{searchId}':
+    delete:
+      operationId: SearchSavedIdDelete
+      parameters:
+        - description: The search id.
+          in: path
+          name: searchId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Deletes the saved search with the supplied id.
+      tags:
+        - Search
+    get:
+      operationId: SearchSavedIdGet
+      parameters:
+        - description: The search id.
+          in: path
+          name: searchId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/savedsearch'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Return the saved search with the supplied id.
+      tags:
+        - Search
+    put:
+      operationId: SearchSavedIdPut
+      parameters:
+        - description: The search id.
+          in: path
+          name: searchId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/savedsearch'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/savedsearch'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Updates the saved search with the supplied id.
+      tags:
+        - Search
+  '/search/saved/{searchId}/bulk/{actionId}':
+    post:
+      operationId: SearchSavedIdBulkActionPost
+      parameters:
+        - description: The search id.
+          in: path
+          name: searchId
+          required: true
+          schema:
+            type: string
+        - description: Id of the bulk action
+          in: path
+          name: actionId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Performs a bulk action on the saved search result.
+      tags:
+        - Search
+  '/search/saved/{searchId}/execute':
+    get:
+      operationId: SearchSavedIdExecuteGet
+      parameters:
+        - description: The search id.
+          in: path
+          name: searchId
+          required: true
+          schema:
+            type: string
+        - description: 'The number of entries per page. (By default: 0)'
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: 'The selected page index. (By default: 0)'
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            The offset of the returned result set. If set, the
+            'currentPageIndex' parameter is ignored.
+          in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - description: 'The maximum entries. (By default: 200)'
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property(ies) sorting. (Example: sortBy=''dc:title,dc:description'')'
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order. (Example: sortOrder=''DESC,ASC'')'
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: 'Executes saved searches, returning its results.'
+      tags:
+        - Search
+  '/id/{docId}/@search':
+    get:
+      operationId: DocumentIdSearchAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: NXQL query
+          in: query
+          name: query
+          required: false
+          schema:
+            type: string
+        - description: A full text query
+          in: query
+          name: fullText
+          required: false
+          schema:
+            type: string
+        - description: Field on which to order
+          in: query
+          name: orderBy
+          required: false
+          schema:
+            type: string
+        - description: Index of the current page
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            Offset of the page to retrieve. If set, the 'currentPageIndex'
+            parameter is ignored.
+          in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - description: Size of the page to retrieve. Ignored if offset set
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: Maximum results to retrieve
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property to sort by, for example ''dc:title'''
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order, accepts ''asc'' or ''desc'', default is ''desc'''
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Get the children of a document by its id
+      tags:
+        - Search
+        - Adapter
+  '/path/{docPath}/@search':
+    get:
+      operationId: DocumentPathSearchAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: Index of the current page
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            Offset of the page to retrieve. If set, the 'currentPageIndex'
+            parameter is ignored.
+          in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - description: Size of the page to retrieve. Ignored if offset set
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: Maximum results to retrieve
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property to sort by, for example ''dc:title'''
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order, accepts ''asc'' or ''desc'', default is ''desc'''
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+        - description: NXQL query
+          in: query
+          name: query
+          required: false
+          schema:
+            type: string
+        - description: A full text query
+          in: query
+          name: fullText
+          required: false
+          schema:
+            type: string
+        - description: Field on which to order
+          in: query
+          name: orderBy
+          required: false
+          schema:
+            type: string
+        - description: Schemas to be included in response
+          in: header
+          name: X-NXDocumentProperties
+          required: false
+          schema:
+            type: string
+        - description: Categories to be included in context parameters map
+          in: header
+          name: X-NXContext-Category
+          required: false
+          schema:
+            type: string
+        - description: >-
+            Checkin Document Version. Return the last document version. (not
+            live document) | Values: major or minor or none
+          in: header
+          name: X-Versioning-Option
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only documents which you have permission to see will be returned
+      summary: Get the children of a document by its path
+      tags:
+        - Search
+        - Adapter
+  '/id/{docId}/@task':
+    get:
+      operationId: DocumentIdTaskAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+        - description: id of the user who is actor of the task
+          in: query
+          name: userId
+          required: true
+          schema:
+            type: string
+        - description: id of the workflow instance the task belongs to
+          in: query
+          name: workflowInstanceId
+          required: false
+          schema:
+            type: string
+        - description: >-
+            name of the workflow model of the task (i.e. 'SerialDocumentReview',
+            'ParallelDocumentReview'). Deprecated since 11.1 as this parameter
+            forces post-filtering and prevents paginated results.
+          in: query
+          name: workflowModelName
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tasks'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only task instance which you have permission to see will be returned
+      summary: List tasks of the given document
+      tags:
+        - Workflow
+  '/path/{docPath}/@task':
+    get:
+      operationId: DocumentPathTaskAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+        - description: id of the user who is actor of the task
+          in: query
+          name: userId
+          required: true
+          schema:
+            type: string
+        - description: id of the workflow instance the task belongs to
+          in: query
+          name: workflowInstanceId
+          required: false
+          schema:
+            type: string
+        - description: >-
+            name of the workflow model of the task (i.e. 'SerialDocumentReview',
+            'ParallelDocumentReview'). Deprecated since 11.1 as this parameter
+            forces post-filtering and prevents paginated results.
+          in: query
+          name: workflowModelName
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tasks'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only task instance which you have permission to see will be returned
+      summary: List tasks of the given document
+      tags:
+        - Workflow
+  /task:
+    get:
+      operationId: TaskGet
+      parameters:
+        - description: id of the user who is actor of the task
+          in: query
+          name: userId
+          required: true
+          schema:
+            type: string
+        - description: id of the workflow instance the task belongs to
+          in: query
+          name: workflowInstanceId
+          required: false
+          schema:
+            type: string
+        - description: >-
+            name of the workflow model of the task (i.e. 'SerialDocumentReview',
+            'ParallelDocumentReview'). Deprecated since 11.1 as this parameter
+            forces post-filtering and prevents paginated results.
+          in: query
+          name: workflowModelName
+          required: false
+          schema:
+            type: string
+        - description: Index of the current page
+          in: query
+          name: currentPageIndex
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            Offset of the page to retrieve. If set, the 'currentPageIndex'
+            parameter is ignored
+          in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - description: Size of the page to retrieve. Ignored if offset set
+          in: query
+          name: pageSize
+          required: false
+          schema:
+            type: integer
+        - description: Maximum results to retrieve
+          in: query
+          name: maxResults
+          required: false
+          schema:
+            type: integer
+        - description: 'Property to sort by, for example ''dc:title'''
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+        - description: 'Sort order, accepts ''asc'' or ''desc'', default is ''desc'''
+          in: query
+          name: sortOrder
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tasks'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only task instance which you have permission to see will be returned
+      summary: Query tasks by user and workflow ids
+      tags:
+        - Workflow
+        - Task
+  '/task/{taskId}':
+    get:
+      operationId: TaskIdGet
+      parameters:
+        - description: Id of the task
+          in: path
+          name: taskId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/task'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only task instance which you have permission to see will be returned
+      summary: Get a task by its id
+      tags:
+        - Workflow
+        - Task
+  '/task/{taskId}/delegate':
+    put:
+      operationId: TaskDelegatePut
+      parameters:
+        - description: Id of the task
+          in: path
+          name: taskId
+          required: true
+          schema:
+            type: string
+        - description: comma separated ids of the delegated actors
+          in: query
+          name: delegatedActors
+          required: true
+          schema:
+            type: string
+        - description: comment
+          in: query
+          name: comment
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: 'See https://doc.nuxeo.com/x/34z1'
+      summary: Delegate a task
+      tags:
+        - Workflow
+        - Task
+  '/task/{taskId}/reassign':
+    put:
+      operationId: TaskReassignPut
+      parameters:
+        - description: Id of the task
+          in: path
+          name: taskId
+          required: true
+          schema:
+            type: string
+        - description: comma separated ids of the new actors
+          in: query
+          name: actors
+          required: true
+          schema:
+            type: string
+        - description: comment
+          in: query
+          name: comment
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: 'See https://doc.nuxeo.com/x/1YcZAQ'
+      summary: Reassign a task
+      tags:
+        - Workflow
+        - Task
+  '/task/{taskId}/{action}':
+    put:
+      operationId: TaskActionPut
+      parameters:
+        - description: Id of the task
+          in: path
+          name: taskId
+          required: true
+          schema:
+            type: string
+        - description: >-
+            the action to be applied when completed the task. The action
+            determines the transition to be followed and the next task within
+            the workflow.
+          in: path
+          name: action
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/taskCompletionRequest'
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Complete a workflow related task
+      summary: Complete task
+      tags:
+        - Workflow
+        - Task
+  /token:
+    get:
+      operationId: TokenGet
+      parameters:
+        - description: Application symbolic name
+          in: query
+          name: application
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationTokenList'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Gets all readable authentication tokens
+      tags:
+        - Token
+    post:
+      operationId: TokenPost
+      parameters:
+        - description: Application symbolic name
+          in: query
+          name: application
+          required: false
+          schema:
+            type: string
+        - description: Device identifier
+          in: query
+          name: deviceId
+          required: true
+          schema:
+            type: string
+        - description: Device description
+          in: query
+          name: deviceDescription
+          required: true
+          schema:
+            type: string
+        - description: Permission granted with the authentication token
+          in: query
+          name: permission
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Acquire new authentication token
+      tags:
+        - Token
+  '/token/{token}':
+    delete:
+      operationId: TokenDelete
+      parameters:
+        - description: Authentication Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Delete an existing authentication token
+      tags:
+        - Token
+  /user:
+    post:
+      operationId: UserPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Create a user
+      tags:
+        - User
+  /user/search:
+    get:
+      operationId: UserSearchGet
+      parameters:
+        - description: Query string
+          in: query
+          name: q
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/documents'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get a user by its name
+      tags:
+        - User
+  '/user/{userName}':
+    delete:
+      operationId: UserByNameDelete
+      parameters:
+        - description: 'Username of the user, ex: ''Administrator'''
+          in: path
+          name: userName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Delete a user by its name
+      tags:
+        - User
+    get:
+      operationId: UserByNameGet
+      parameters:
+        - description: 'Username of the user, ex: ''Administrator'''
+          in: path
+          name: userName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get a user by its name
+      tags:
+        - User
+    put:
+      operationId: UserByNamePut
+      parameters:
+        - description: 'Username of the user, ex: ''Administrator'''
+          in: path
+          name: userName
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Update a user by its name
+      tags:
+        - User
+  '/user/{userName}/group/{groupName}':
+    post:
+      operationId: UserAddGroupPost
+      parameters:
+        - description: 'Username of the user, ex: ''Administrator'''
+          in: path
+          name: userName
+          required: true
+          schema:
+            type: string
+        - description: 'Name of the group, ex: ''members'''
+          in: path
+          name: groupName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Add a group to a user
+      tags:
+        - User
+  '/id/{docId}/@workflow':
+    get:
+      operationId: DocumentIdWorkflowAdapterGet
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only workflow instances launched by current user will be returned
+      summary: Get the workflow instances launched on the given document
+      tags:
+        - Workflow
+    post:
+      operationId: DocumentIdWorkflowAdapterPost
+      parameters:
+        - description: Id of the document
+          in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflowRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowRequest'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Start a workflow instance on the given document
+      tags:
+        - Workflow
+  '/path/{docPath}/@workflow':
+    get:
+      operationId: DocumentPathWorkflowAdapterGet
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only workflow instances launched by current user will be returned
+      summary: Get the workflow instances launched on the given document
+      tags:
+        - Workflow
+    post:
+      operationId: DocumentPathWorkflowAdapterPost
+      parameters:
+        - description: 'Path of the document, ex: ''default-domain'''
+          in: path
+          name: docPath
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflowRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowRequest'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Start a workflow instance on the given document
+      tags:
+        - Workflow
+  /workflow:
+    get:
+      operationId: WorkflowGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only workflow instances launched by current user will be returned
+      summary: Get the workflow instances launched by the current user
+      tags:
+        - Workflow
+    post:
+      operationId: WorkflowPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflowRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowRequest'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Start a workflow instance
+      tags:
+        - Workflow
+  '/workflow/{workflowInstanceId}':
+    delete:
+      operationId: WorkflowInstanceDelete
+      parameters:
+        - description: Id of the workflow instance
+          in: path
+          name: workflowInstanceId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only workflow instance which you have permission to see will be returned
+      summary: Delete a workflow instance by its id
+      tags:
+        - Workflow
+    get:
+      operationId: WorkflowInstanceGet
+      parameters:
+        - description: Id of the workflow instance
+          in: path
+          name: workflowInstanceId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflow'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Only workflow instance which you have permission to see will be returned
+      summary: Find a workflow instance by its id
+      tags:
+        - Workflow
+  '/workflow/{workflowInstanceId}/graph':
+    get:
+      operationId: WorkflowInstanceGraphGet
+      parameters:
+        - description: Id of the workflow instance
+          in: path
+          name: workflowInstanceId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowGraph'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Get the json serialization of a workflow instance graph
+      summary: Get the json serialization of a workflow instance graph
+      tags:
+        - Workflow
+  /workflowModel:
+    get:
+      operationId: WorkflowModelGet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Get the workflow models
+      tags:
+        - Workflow Model
+  '/workflowModel/{modelName}':
+    get:
+      operationId: WorkflowModelByNameGet
+      parameters:
+        - description: Name of the workflow model
+          in: path
+          name: modelName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflow'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      summary: Find a workflow model by its name
+      tags:
+        - Workflow Model
+  '/workflowModel/{modelName}/graph':
+    get:
+      operationId: WorkflowModelGraphGet
+      parameters:
+        - description: Name of the workflow model
+          in: path
+          name: modelName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowGraph'
+        '401':
+          description: Not Authorized to get document
+        '404':
+          description: Document not found
+      description: Get the json serialization of a workflow model graph
+      summary: Get the json serialization of a workflow model graph
+      tags:
+        - Workflow Model

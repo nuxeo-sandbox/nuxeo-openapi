@@ -1,0 +1,19 @@
+properties:
+  documentIds:
+    items:
+      type: string
+    type: array
+  entity-type:
+    type: string
+    uniqueItems: false
+  worflowVariables:
+    items:
+      $ref: ./Property.yml
+    type: object
+    uniqueItems: true
+  workflowModelName:
+    type: string
+    uniqueItems: false
+required:
+  - entity-type
+uniqueItems: false

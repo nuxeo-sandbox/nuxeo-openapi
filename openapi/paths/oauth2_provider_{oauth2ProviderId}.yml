@@ -1,0 +1,51 @@
+get:
+  operationId: OAuth2ProviderIdGet
+  parameters:
+    - description: Name of the OAuth2 provider
+      in: path
+      name: oauth2ProviderId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2ProviderData.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Retrieves OAuth2 provider data for the current user.
+  tags:
+    - OAuth2
+put:
+  operationId: OAuth2ProviderIdPut
+  parameters:
+    - description: Name of the OAuth2 provider
+      in: path
+      name: oauth2ProviderId
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/oauth2ProviderData.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2ProviderData.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Updates an OAuth2 provider.
+  tags:
+    - OAuth2

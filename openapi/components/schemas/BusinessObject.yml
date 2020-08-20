@@ -1,0 +1,10 @@
+properties:
+  entity-type:
+    type: string
+    uniqueItems: false
+  value:
+    type: object
+    uniqueItems: false
+required:
+  - entity-type
+uniqueItems: false

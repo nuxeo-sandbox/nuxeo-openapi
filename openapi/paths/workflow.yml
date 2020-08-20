@@ -1,0 +1,38 @@
+get:
+  operationId: WorkflowGet
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/workflows.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: Only workflow instances launched by current user will be returned
+  summary: Get the workflow instances launched by the current user
+  tags:
+    - Workflow
+post:
+  operationId: WorkflowPost
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/workflowRequest.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/workflowRequest.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Start a workflow instance
+  tags:
+    - Workflow

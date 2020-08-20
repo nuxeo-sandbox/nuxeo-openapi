@@ -1,0 +1,25 @@
+properties:
+  attachedDocumentIds:
+    items:
+      type: string
+    type: array
+  entity-type:
+    type: string
+    uniqueItems: false
+  id:
+    type: string
+    uniqueItems: false
+  initiator:
+    type: string
+    uniqueItems: false
+  name:
+    type: string
+    uniqueItems: false
+  variables:
+    items:
+      $ref: ./Property.yml
+    type: object
+    uniqueItems: true
+required:
+  - entity-type
+uniqueItems: false

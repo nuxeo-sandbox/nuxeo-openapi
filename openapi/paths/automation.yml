@@ -1,0 +1,16 @@
+get:
+  operationId: AutomationGet
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/OperationDescriptionList.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Gets the list of all operation/chain
+  tags:
+    - Automation

@@ -1,0 +1,89 @@
+get:
+  operationId: DirectoryByNameGet
+  parameters:
+    - description: 'Directory name. Ex: ''subject'''
+      in: path
+      name: directoryName
+      required: true
+      schema:
+        type: string
+    - description: Index of the current page    
+      in: query
+      name: currentPageIndex
+      required: false
+      schema:
+        type: integer
+    - description: >-
+        Offset of the page to retrieve. If set, the 'currentPageIndex' parameter
+        is ignored.
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+    - description: Size of the page to retrieve. Ignored if offset set
+      in: query
+      name: pageSize
+      required: false
+      schema:
+        type: integer
+    - description: Maximum results to retrieve
+      in: query
+      name: maxResults
+      required: false
+      schema:
+        type: integer
+    - description: 'Property to sort by, for example ''dc:title'''
+      in: query
+      name: sortBy
+      required: false
+      schema:
+        type: string
+    - description: 'Sort order, accepts ''asc'' or ''desc'', default is ''desc'''
+      in: query
+      name: sortOrder
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/directoryEntries.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Get directory entries
+  tags:
+    - Directory
+post:
+  operationId: DirectoryByNamePost
+  parameters:
+    - description: 'Directory name. Ex: ''subject'''
+      in: path
+      name: directoryName
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref:  ../components/schemas/directoryEntry.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/directoryEntry.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Creates a directory entry
+  tags:
+    - Directory

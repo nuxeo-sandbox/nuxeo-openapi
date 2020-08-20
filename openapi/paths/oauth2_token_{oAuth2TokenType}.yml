@@ -1,0 +1,27 @@
+get:
+  operationId: OAuth2TokenTypeGet
+  parameters:
+    - description: >-
+        The oAuth2 token type. AS_PROVIDER to retrieve the provided tokens or
+        AS_CLIENT to retrieve those consumed.
+      in: path
+      name: oAuth2TokenType
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2TokenDataList.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: >-
+    Retrieves all OAuth2 tokens by OAuth2 token type. An OAuth2 token can be
+    provided by Nuxeo or consumed.
+  tags:
+    - OAuth2

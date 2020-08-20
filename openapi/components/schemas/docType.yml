@@ -1,0 +1,21 @@
+properties:
+  entity-type:
+    type: string
+    uniqueItems: false
+  facets:
+    items:
+      type: string
+    type: array
+  name:
+    type: string
+  parent:
+    type: string
+  schemas:
+    items: {}
+    type: array
+required:
+  - entity-type
+  - facets
+  - name
+  - parent
+  - schemas

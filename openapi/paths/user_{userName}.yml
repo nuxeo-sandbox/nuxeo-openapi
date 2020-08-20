@@ -1,0 +1,74 @@
+delete:
+  operationId: UserByNameDelete
+  parameters:
+    - description: 'Username of the user, ex: ''Administrator'''
+      in: path
+      name: userName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/user.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Delete a user by its name
+  tags:
+    - User
+get:
+  operationId: UserByNameGet
+  parameters:
+    - description: 'Username of the user, ex: ''Administrator'''
+      in: path
+      name: userName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/user.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Get a user by its name
+  tags:
+    - User
+put:
+  operationId: UserByNamePut
+  parameters:
+    - description: 'Username of the user, ex: ''Administrator'''
+      in: path
+      name: userName
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/user.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/user.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Update a user by its name
+  tags:
+    - User

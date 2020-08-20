@@ -1,0 +1,63 @@
+delete:
+  operationId: OAuth2ClientIdDelete
+  parameters:
+    - description: Name of the OAuth2 client
+      in: path
+      name: oauth2ClientId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Deletes an OAuth2 client token.
+  tags:
+    - OAuth2
+get:
+  operationId: OAuth2ClientIdGet
+  parameters:
+    - description: Name of the OAuth2 client
+      in: path
+      name: oauth2ClientId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2ClientData.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Retrieves an OAuth2 client.
+  tags:
+    - OAuth2
+put:
+  operationId: OAuth2ClientIdPut
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/oauth2ClientData.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2ClientData.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Update an OAuth2 client.
+  tags:
+    - OAuth2

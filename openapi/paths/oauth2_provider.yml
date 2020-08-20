@@ -1,0 +1,37 @@
+get:
+  operationId: OAuth2ProviderGet
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2ProviderDataList.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Retrieves the list of available OAuth2 providers.
+  tags:
+    - OAuth2
+post:
+  operationId: OAuth2ProviderPost
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/oauth2ProviderData.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2ProviderData.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Adds an OAuth2 provider.
+  tags:
+    - OAuth2

@@ -1,0 +1,16 @@
+get:
+  operationId: OAuth2TokenProviderGet
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2TokenDataList.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Retrieves all OAuth2 provider tokens for the current user.
+  tags:
+    - OAuth2

@@ -1,0 +1,41 @@
+get:
+  operationId: DocumentIdEmptyWithDefaultAdapterGet
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+    - description: The type of the empty document to be initialized
+      in: query
+      name: type
+      required: true
+      schema:
+        type: string
+    - description: The name of the empty document to be initialized
+      in: query
+      name: name
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/document.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: >-
+    To retrieve all initialized properties, the 'properties: *' header must be
+    used
+  summary: >-
+    Initialize an empty document with default properties given a document type
+    and a parent
+  tags:
+    - Empty Document 
+    - Adapter

@@ -1,0 +1,65 @@
+get:
+  deprecated: true
+  operationId: DocumentPathBusinessObjectAdapterGet
+  parameters:
+    - description: 'Path of the document, ex: ''default-domain'''
+      in: path
+      name: docPath
+      required: true
+      schema:
+        type: string
+    - description: Name of the adapter
+      in: path
+      name: adapterName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/BusinessObject.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Get the business object adapter on a document given its path
+  tags:
+    - Business Object
+put:
+  deprecated: true
+  operationId: DocumentPathBusinessObjectAdapterPut
+  parameters:
+    - description: 'Path of the document, ex: ''default-domain'''
+      in: path
+      name: docPath
+      required: true
+      schema:
+        type: string
+    - description: Name of the adapter
+      in: path
+      name: adapterName
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/BusinessObject.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/BusinessObject.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Updates the business object adapter on a document given its path
+  tags:
+    - Business Object

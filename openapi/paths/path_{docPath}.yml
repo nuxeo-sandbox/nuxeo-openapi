@@ -1,0 +1,163 @@
+delete:
+  operationId: DocumentPathDelete
+  parameters:
+    - description: 'Path of the document, ex: ''default-domain'''
+      in: path
+      name: docPath
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: Only documents which you have permission can be deleted
+  summary: Deletes a document by its path
+  tags:
+    - Document
+get:
+  operationId: DocumentPathGet
+  parameters:
+    - description: 'Path of the document, ex: ''default-domain'''
+      in: path
+      name: docPath
+      required: true
+      schema:
+        type: string
+    - description: Schemas to be included in response
+      in: header
+      name: X-NXDocumentProperties
+      required: false
+      schema:
+        type: string
+    - description: Categories to be included in context parameters map
+      in: header
+      name: X-NXContext-Category
+      required: false
+      schema:
+        type: string
+    - description: >-
+        Checkin Document Version. Return the last document version. (not live
+        document) | Values: major or minor or none
+      in: header
+      name: X-Versioning-Option
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/document.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: Only documents which you have permission to see will be returned
+  summary: Find a document by its path
+  tags:
+    - Document
+post:
+  operationId: DocumentPathPost
+  parameters:
+    - description: 'Path of the document, ex: ''default-domain'''
+      in: path
+      name: docPath
+      required: true
+      schema:
+        type: string
+    - description: Schemas to be included in response
+      in: header
+      name: X-NXDocumentProperties
+      required: false
+      schema:
+        type: string
+    - description: Categories to be included in context parameters map
+      in: header
+      name: X-NXContext-Category
+      required: false
+      schema:
+        type: string
+    - description: >-
+        Checkin Document Version. Return the last document version. (not live
+        document) | Values: major or minor or none
+      in: header
+      name: X-Versioning-Option
+      required: false
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/document.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/document.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Creates a document by its parent path
+  tags:
+    - Document
+put:
+  operationId: DocumentPathPut
+  parameters:
+    - description: 'Path of the document, ex: ''default-domain'''
+      in: path
+      name: docPath
+      required: true
+      schema:
+        type: string
+    - description: Schemas to be included in response
+      in: header
+      name: X-NXDocumentProperties
+      required: false
+      schema:
+        type: string
+    - description: Categories to be included in context parameters map
+      in: header
+      name: X-NXContext-Category
+      required: false
+      schema:
+        type: string
+    - description: >-
+        Checkin Document Version. Return the last document version. (not live
+        document) | Values: major or minor or none
+      in: header
+      name: X-Versioning-Option
+      required: false
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/document.yml
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/document.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: >-
+    Only documents which you have permission can be updated. Only the properties
+    part of the document object is taken into account for update
+  summary: Updates a document by its path
+  tags:
+    - Document

@@ -1,0 +1,44 @@
+properties:
+  currentPageIndex:
+    type: string
+    uniqueItems: false
+  entity-type:
+    type: string
+    uniqueItems: false
+  id:
+    type: string
+    uniqueItems: false
+  maxResults:
+    type: string
+    uniqueItems: false
+  pageProviderName:
+    type: string
+    uniqueItems: false
+  pageSize:
+    type: string
+    uniqueItems: false
+  params:
+    type: object
+    uniqueItems: false
+  query:
+    type: string
+    uniqueItems: false
+  queryLanguage:
+    type: string
+    uniqueItems: false
+  queryParams:
+    type: string
+    uniqueItems: false
+  sortBy:
+    type: string
+    uniqueItems: false
+  sortOrder:
+    type: string
+    uniqueItems: false
+  title:
+    type: string
+    uniqueItems: false
+required:
+  - entity-type
+  - title
+uniqueItems: false

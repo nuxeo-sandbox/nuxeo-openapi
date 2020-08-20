@@ -1,0 +1,83 @@
+delete:
+  operationId: OAuth2TokenClientIdUserDelete
+  parameters:
+    - description: Name of the OAuth2 client
+      in: path
+      name: oauth2ClientId
+      required: true
+      schema:
+        type: string
+    - description: 'Username of the user, ex: ''Administrator'''
+      in: path
+      name: userName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Deletes a OAuth2 client token.
+  tags:
+    - OAuth2
+get:
+  operationId: OAuth2TokenClientIdUserGet
+  parameters:
+    - description: Name of the OAuth2 client
+      in: path
+      name: oauth2ClientId
+      required: true
+      schema:
+        type: string
+    - description: 'Username of the user, ex: ''Administrator'''
+      in: path
+      name: userName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2TokenData.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Retrieves a OAuth2 client token.
+  tags:
+    - OAuth2
+put:
+  operationId: OAuth2TokenClientIdUserPut
+  parameters:
+    - description: Name of the OAuth2 client
+      in: path
+      name: oauth2ClientId
+      required: true
+      schema:
+        type: string
+    - description: 'Username of the user, ex: ''Administrator'''
+      in: path
+      name: userName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/oauth2TokenData.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Updates an OAuth2 client token.
+  tags:
+    - OAuth2

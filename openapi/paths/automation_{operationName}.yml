@@ -1,0 +1,51 @@
+get:
+  operationId: AutomationOperationGet
+  parameters:
+    - description: Name of the operation
+      in: path
+      name: operationName
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/OperationDescription.yml
+    "401":
+      description: Not Authorized to get document
+    "404":
+      description: Document not found
+  summary: Gets the description of the operation/chain
+  tags:
+    - Automation
+post:
+  operationId: AutomationOperationPost
+  parameters:
+    - description: Name of the operation
+      in: path
+      name: operationName
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/OperationParams.yml
+  responses:
+    "200":
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+    "401":
+      description: Not Authorized to get document
+    "404":
+      description: Document not found
+  summary: Execute an operation or a chain on a document
+  tags:
+    - Automation

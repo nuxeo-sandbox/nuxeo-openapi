@@ -1,0 +1,32 @@
+properties:
+  clientId:
+    type: string
+    uniqueItems: false
+  creationDate:
+    type: string
+    uniqueItems: false
+  entity-type:
+    type: string
+    uniqueItems: false
+  isShared:
+    type: boolean
+    uniqueItems: false
+  nuxeoLogin:
+    type: string
+    uniqueItems: false
+  serviceLogin:
+    type: string
+    uniqueItems: false
+  serviceName:
+    type: string
+    uniqueItems: false
+  sharedWith:
+    items:
+      type: string
+    type: array
+required:
+  - entity-type
+  - nuxeoLogin
+  - serviceLogin
+  - serviceName
+uniqueItems: false

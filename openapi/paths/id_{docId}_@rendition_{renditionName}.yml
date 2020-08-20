@@ -1,0 +1,30 @@
+get:
+  operationId: DocumentIdRenditionAdapterGet
+  parameters:
+    - description: Id of the document
+      in: path
+      name: docId
+      required: true
+      schema:
+        type: string
+    - description: 'Name of the rendition, ex: ''pdf'''
+      in: path
+      name: renditionName
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/documents.yml
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  summary: Returns the specified rendition on document by its id
+  tags:
+    - Rendition
+    - Adapter

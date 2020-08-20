@@ -1,0 +1,34 @@
+put:
+  operationId: TaskActionPut
+  parameters:
+    - description: Id of the task
+      in: path
+      name: taskId
+      required: true
+      schema:
+        type: string
+    - description: >-
+        the action to be applied when completed the task. The action determines
+        the transition to be followed and the next task within the workflow.
+      in: path
+      name: action
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/taskCompletionRequest.yml
+  responses:
+    '200':
+      description: Successful response
+    '401':
+      description: Not Authorized to get document
+    '404':
+      description: Document not found
+  description: Complete a workflow related task
+  summary: Complete task
+  tags:
+    - Workflow
+    - Task

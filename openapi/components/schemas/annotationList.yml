@@ -1,0 +1,13 @@
+properties:
+  entity-type:
+    type: string
+    uniqueItems: false
+  entries:
+    items:
+      $ref: ./annotation.yml
+    type: array
+    uniqueItems: false
+required:
+  - entity-type
+  - entries
+uniqueItems: false
