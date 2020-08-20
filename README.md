@@ -11,9 +11,13 @@
 
 #### `npm start`
 Starts the reference docs preview server.
+Open http://localhost:8080/ to browse the Nuxeo specification
 
 #### `npm run build`
-Bundles the definition to the dist folder.
+Bundles the definition to the docs folder.
+
+#### `npm run lint`
+Checks the syntax of the declared specification.
 
 #### `npm test`
 Validates the definition.
