@@ -40,7 +40,6 @@ properties:
     type: array
   taskInfo:
     $ref: ./taskInfo.yml
-    uniqueItems: true
   type:
     format: date
     type: string

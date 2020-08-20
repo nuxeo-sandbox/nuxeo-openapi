@@ -20,7 +20,7 @@
   "private": true,
   "scripts": {
     "start": "openapi preview-docs",
-    "build": "openapi bundle -o docs/dist",
+    "build": "openapi bundle -o docs/openapi",
     "dist": "openapi bundle -o dist/openapi",
     "lint": "openapi lint",
     "test": "jest"

@@ -5,7 +5,17 @@ properties:
     type: array
     uniqueItems: false
   layoutResource:
-    $ref: ./layoutResource.yml
+    properties:
+      name:
+        type: string
+        uniqueItems: false
+      url:
+        type: string
+        format: uri
+        uniqueItems: false
+    required:
+     - name
+     - url
     uniqueItems: false
 required:
   - actions

@@ -6,7 +6,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/docType.yml
+            $ref: ../components/schemas/docTypes.yml
     '401':
       description: Not Authorized to get document
     '404':

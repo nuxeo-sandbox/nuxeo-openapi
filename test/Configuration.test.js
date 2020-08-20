@@ -14,6 +14,7 @@ describe("GET /config/types", () => {
 
 describe("GET /config/types/{docType}", () => {
   it("get /config/types/{docType}", async () => {
+    const docType = "File";
     const res = await nuxios.get(`/config/types/${docType}`);
     expect(res.status).toEqual(200);
     expect(res).toSatisfyApiSpec();
@@ -30,6 +31,7 @@ describe("GET /config/facets", () => {
 
 describe("GET /config/facets/{facet}", () => {
   it("get /config/facets/{facet}", async () => {
+    const facet = "Versionable";
     const res = await nuxios.get(`/config/facets/${facet}`);
     expect(res.status).toEqual(200);
     expect(res).toSatisfyApiSpec();
@@ -46,6 +48,7 @@ describe("GET /config/schemas", () => {
 
 describe("GET /config/schemas/{schema}", () => {
   it("get /config/schemas/{schema}", async () => {
+    const schema = "dublincore";
     const res = await nuxios.get(`/config/schemas/${schema}`);
     expect(res.status).toEqual(200);
     expect(res).toSatisfyApiSpec();

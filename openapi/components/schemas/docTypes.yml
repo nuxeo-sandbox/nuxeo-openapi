@@ -1,0 +1,8 @@
+properties:
+  doctypes:
+    type: object
+  schemas:
+    type: object
+required:
+  - doctypes
+  - schemas
