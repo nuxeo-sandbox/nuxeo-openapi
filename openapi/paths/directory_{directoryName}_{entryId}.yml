@@ -5,10 +5,14 @@ delete:
       in: path
       name: directoryName
       required: true
+      schema:
+        type: string
     - description: Directory entry id
       in: path
       name: entryId
       required: true
+      schema:
+        type: string
   responses:
     '200':
       description: Successful response
@@ -30,10 +34,14 @@ get:
       in: path
       name: directoryName
       required: true
+      schema:
+        type: string
     - description: Directory entry id
       in: path
       name: entryId
       required: true
+      schema:
+        type: string
   responses:
     '200':
       description: Successful response

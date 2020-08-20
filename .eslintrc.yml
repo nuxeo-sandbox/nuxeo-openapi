@@ -1,0 +1,15 @@
+env:
+  browser: true
+  commonjs: true
+  es2020: true
+  node: trues
+extends: "eslint:recommended"
+parserOptions:
+  ecmaVersion: 11
+rules: {}
+plugins:
+  - jest
+globals:
+  describe: true
+  it: true
+  expect: true

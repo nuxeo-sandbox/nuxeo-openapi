@@ -6,10 +6,23 @@
     "redoc": "^2.0.0-rc.37",
     "redoc-cli": "^0.9.11"
   },
+  "devDependencies": {
+    "@apidevtools/swagger-parser": "^10.0.1",
+    "@types/jest": "^26.0.10",
+    "axios": "^0.19.2",
+    "eslint": "^7.7.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "jest": "^26.4.1",
+    "jest-openapi": "^0.9.4",
+    "jshint": "^2.12.0",
+    "openapi-schema-validator": "^7.0.1"
+  },
   "private": true,
   "scripts": {
     "start": "openapi preview-docs",
     "build": "openapi bundle -o docs/dist",
-    "test": "openapi lint"
+    "dist": "openapi bundle -o dist/openapi",
+    "lint": "openapi lint",
+    "test": "jest"
   }
 }

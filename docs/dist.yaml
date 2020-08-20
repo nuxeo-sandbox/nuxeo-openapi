@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  version: LTS 2019
+  version: 2019 LTS
   title: Nuxeo Platform
   termsOfService: 'https://www.nuxeo.com/about/why-nuxeo/'
   contact:
@@ -24,7 +24,7 @@ servers:
         default: demo.nuxeo.com
         description: Nuxeo Platform Host
       port:
-        default: 443
+        default: '443'
         description: Nuxeo Platform Port
   - url: 'https://nightly.nuxeo.com/nuxeo/api/v1'
     description: Nuxeo Platform Nightly Test Server
@@ -1352,7 +1352,8 @@ components:
           type: string
           uniqueItems: false
         url:
-          $ref: '#/components/schemas/layoutResource'
+          type: string
+          format: uri
           uniqueItems: false
       required:
         - name
@@ -1547,7 +1548,7 @@ components:
 tags:
   - name: Adapter
     description: Adaptation Endpoints
-  - name: Config
+  - name: Configuration
     description: Configuration Information
   - name: Directory
     description: Directory Operations
@@ -2006,10 +2007,14 @@ paths:
           in: path
           name: docId
           required: true
+          schema:
+            type: string
         - description: Name of the adapter
           in: path
           name: adapterName
           required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response
@@ -2733,10 +2738,14 @@ paths:
           in: path
           name: directoryName
           required: true
+          schema:
+            type: string
         - description: Directory entry id
           in: path
           name: entryId
           required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response
@@ -2758,10 +2767,14 @@ paths:
           in: path
           name: directoryName
           required: true
+          schema:
+            type: string
         - description: Directory entry id
           in: path
           name: entryId
           required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response

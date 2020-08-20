@@ -3,7 +3,8 @@ properties:
     type: string
     uniqueItems: false
   url:
-    $ref: ./layoutResource.yml
+    type: string
+    format: uri
     uniqueItems: false
 required:
   - name

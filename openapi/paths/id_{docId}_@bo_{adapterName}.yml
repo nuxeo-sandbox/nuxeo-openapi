@@ -6,12 +6,14 @@ get:
       in: path
       name: docId
       required: true
-      
+      schema:
+        type: string
     - description: Name of the adapter
       in: path
       name: adapterName
       required: true
-      
+      schema:
+        type: string
   responses:
     '200':
       description: Successful response
