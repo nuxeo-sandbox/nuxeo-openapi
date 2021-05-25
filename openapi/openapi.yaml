@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  version: '2019 LTS'
+  version: 'LTS 2021'
   title: Nuxeo Platform
   termsOfService: "https://www.nuxeo.com/about/why-nuxeo/"
   contact:

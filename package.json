@@ -1,27 +1,29 @@
 {
-  "name": "nuxeo-platform",
+  "name": "nuxeo-openapi",
   "version": "1.0.0",
   "dependencies": {
-    "@redocly/openapi-cli": "^1.0.0-beta.8",
-    "redoc": "^2.0.0-rc.37",
-    "redoc-cli": "^0.9.11"
+    "@redocly/openapi-cli": "^1.0.0-beta.46",
+    "redoc": "^2.0.0-rc.53",
+    "redoc-cli": "^0.11.4"
   },
   "devDependencies": {
     "@apidevtools/swagger-parser": "^10.0.1",
     "@types/jest": "^26.0.10",
-    "axios": "^0.19.2",
-    "eslint": "^7.7.0",
-    "eslint-plugin-jest": "^23.20.0",
-    "jest": "^26.4.1",
-    "jest-openapi": "^0.9.4",
+    "axios": "^0.21.1",
+    "eslint": "^7.26.0",
+    "eslint-plugin-jest": "^24.3.6",
+    "jest": "^26.6.3",
+    "jest-openapi": "^0.13.0",
     "jshint": "^2.12.0",
-    "openapi-schema-validator": "^7.0.1"
+    "npm-build-zip": "^1.0.3",
+    "openapi-schema-validator": "^9.0.0"
   },
   "private": true,
   "scripts": {
     "start": "openapi preview-docs",
     "build": "openapi bundle -o docs/openapi",
     "dist": "openapi bundle -o dist/openapi",
+    "zip": "npm-build-zip -inv --src dist",
     "lint": "openapi lint",
     "test": "jest"
   }

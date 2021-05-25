@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  version: 2019 LTS
+  version: LTS 2021
   title: Nuxeo Platform
   termsOfService: 'https://www.nuxeo.com/about/why-nuxeo/'
   contact:
@@ -663,6 +663,15 @@ components:
         - entity-type
         - entries
       uniqueItems: false
+    docTypes:
+      properties:
+        doctypes:
+          type: object
+        schemas:
+          type: object
+      required:
+        - doctypes
+        - schemas
     docType:
       properties:
         entity-type:
@@ -1346,19 +1355,6 @@ components:
         - name
         - url
       uniqueItems: false
-    layoutResource:
-      properties:
-        name:
-          type: string
-          uniqueItems: false
-        url:
-          type: string
-          format: uri
-          uniqueItems: false
-      required:
-        - name
-        - url
-      uniqueItems: false
     taskInfo:
       properties:
         actions:
@@ -1367,7 +1363,17 @@ components:
           type: array
           uniqueItems: false
         layoutResource:
-          $ref: '#/components/schemas/layoutResource'
+          properties:
+            name:
+              type: string
+              uniqueItems: false
+            url:
+              type: string
+              format: uri
+              uniqueItems: false
+          required:
+            - name
+            - url
           uniqueItems: false
       required:
         - actions
@@ -1416,7 +1422,6 @@ components:
           type: array
         taskInfo:
           $ref: '#/components/schemas/taskInfo'
-          uniqueItems: true
         type:
           format: date
           type: string
@@ -2832,7 +2837,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/docType'
+                $ref: '#/components/schemas/docTypes'
         '401':
           description: Not Authorized to get document
         '404':
@@ -3694,6 +3699,13 @@ paths:
         - OAuth2
     put:
       operationId: OAuth2ClientIdPut
+      parameters:
+        - description: Name of the OAuth2 client
+          in: path
+          name: oauth2ClientId
+          required: true
+          schema:
+            type: string
       requestBody:
         content:
           application/json:

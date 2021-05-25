@@ -42,6 +42,13 @@ get:
     - OAuth2
 put:
   operationId: OAuth2ClientIdPut
+  parameters:
+    - description: Name of the OAuth2 client
+      in: path
+      name: oauth2ClientId
+      required: true
+      schema:
+        type: string
   requestBody:
     content:
       application/json:
